@@ -1,4 +1,4 @@
-﻿import { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X, Sun, Moon, Globe } from "lucide-react";
 import { useNavigate, useLocation } from "react-router";
@@ -113,11 +113,14 @@ export function Navbar() {
             <div className="flex items-center gap-3">
               <button 
                 onClick={toggleLanguage}
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110"
+                className="h-10 px-3 rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105"
                 style={{ background: colors.card, border: `1px solid ${colors.border}`, color: colors.text }}
                 aria-label="Toggle Language"
               >
                 <Globe size={18} />
+                <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem", fontWeight: 600 }}>
+                  {language.toUpperCase()}
+                </span>
               </button>
               <button 
                 onClick={toggleTheme}
@@ -209,7 +212,7 @@ export function Navbar() {
                 style={{ background: colors.card, border: `1px solid ${colors.border}`, color: colors.text, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}
               >
                 <Globe size={18} />
-                {language === 'en' ? 'Switch to Arabic' : 'Switch to English'}
+                Language: {{ en: "English", ar: "العربية", fr: "Français", es: "Español", de: "Deutsch" }[language]}
               </button>
               
               <button
