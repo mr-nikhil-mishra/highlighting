@@ -10,10 +10,7 @@ const LanguageContext = createContext({
 });
 
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState(() => {
-    const saved = localStorage.getItem("apex-language");
-    return saved && LANGUAGES.includes(saved) ? saved : "en";
-  });
+  const [language, setLanguage] = useState("en");
 
   const isRTL = language === "ar";
 
