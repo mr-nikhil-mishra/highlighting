@@ -1,4 +1,4 @@
-﻿import { motion, useInView } from "motion/react";
+import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
@@ -24,18 +24,26 @@ function Card({ reason, index, colors }) {
         style={{ border: "1px solid rgba(var(--brand-neon-rgb),0.35)", boxShadow: "inset 0 0 30px rgba(var(--brand-neon-rgb),0.05)" }} />
 
       <div className="mb-6 relative z-10">
-        <span
-          style={{
-            fontFamily: "'Space Grotesk', sans-serif",
-            fontSize: "3.5rem",
-            fontWeight: 700,
-            color: "transparent",
-            WebkitTextStroke: "1px rgba(var(--brand-neon-rgb),0.25)",
-            lineHeight: 1,
-          }}
+        <motion.div
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: index * 0.3 }}
+          style={{ display: "inline-block" }}
         >
-          {reason.number}
-        </span>
+          <span
+            style={{
+              fontFamily: "'Space Grotesk', sans-serif",
+              fontSize: "3.5rem",
+              fontWeight: 700,
+              color: "transparent",
+              WebkitTextStroke: "1px rgba(var(--brand-neon-rgb),0.25)",
+              lineHeight: 1,
+              transition: "all 0.4s ease"
+            }}
+            className="group-hover:text-[var(--brand-neon)] group-hover:drop-shadow-[0_0_15px_rgba(var(--brand-neon-rgb),0.5)]"
+          >
+            {reason.number}
+          </span>
+        </motion.div>
       </div>
 
       <h3 className="mb-3 relative z-10" style={{ fontFamily: "'Space Grotesk', sans-serif", color: colors.text, fontSize: "1.15rem", fontWeight: 600, letterSpacing: "-0.01em", transition: "color 0.3s ease" }}>

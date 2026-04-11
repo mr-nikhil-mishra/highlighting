@@ -1,4 +1,5 @@
-﻿import { motion } from "motion/react";
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
 import {
   Instagram,
   Linkedin,
@@ -26,8 +27,25 @@ export function Footer() {
   const { language } = useLanguage();
   const t = translations[language].footer;
 
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: { staggerChildren: 0.15, delayChildren: 0.1 }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+  };
+
   return (
     <footer
+      ref={ref}
       className="relative pt-16 pb-8 overflow-hidden"
       style={{
         background: colors.bgDeep,
@@ -41,10 +59,15 @@ export function Footer() {
         style={{ background: "linear-gradient(90deg, transparent, rgba(var(--brand-neon-rgb),0.3), transparent)" }}
       />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <motion.div 
+        className="max-w-7xl mx-auto px-6"
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+      >
         <div className="grid md:grid-cols-3 gap-12 mb-16">
           {/* Col 1 - Brand */}
-          <div>
+          <motion.div variants={itemVariants}>
             <div
               className="flex items-center gap-2.5 mb-6 cursor-pointer"
               onClick={() => navigate("/")}
@@ -111,10 +134,10 @@ export function Footer() {
                 );
               })}
             </div>
-          </div>
+          </motion.div>
 
           {/* Col 2 - Quick Links */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h4
               className="mb-6"
               style={{
@@ -154,10 +177,10 @@ export function Footer() {
                 </motion.button>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Col 3 - Contact */}
-          <div>
+          <motion.div variants={itemVariants}>
             <h4
               className="mb-6"
               style={{
@@ -197,11 +220,12 @@ export function Footer() {
                 </p>
               </div>
             </div>
-          </div>
+          </motion.div>
         </div>
 
         {/* Bottom bar */}
-        <div
+        <motion.div
+          variants={itemVariants}
           className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4"
           style={{ borderTop: `1px solid ${colors.border}` }}
         >
@@ -228,8 +252,8 @@ export function Footer() {
               </motion.button>
             ))}
           </div>
-        </div>
-      </div>
+        </motion.div>
+      </motion.div>
     </footer>
   );
 }
