@@ -16,10 +16,10 @@ export function Navbar() {
 
   const navLinks = [
     { label: "Home", path: "#home" },
-    { label: "About", path: "#about" },
+    { label: "About Us", path: "#about" },
     { label: "Services", path: "#services" },
-    { label: "Portfolio", path: "#portfolio" },
-    { label: "Contact", path: "#contact" },
+    { label: "Case Studies", path: "#case-studies" },
+    { label: "FAQs", path: "#faq" },
   ];
 
   const scrollToSection = (id) => {
@@ -48,11 +48,11 @@ export function Navbar() {
           
           {/* Logo */}
           <div 
-            className="flex flex-col cursor-pointer"
+            className="flex flex-col cursor-pointer group"
             onClick={() => scrollToSection('#home')}
           >
-            <span style={{ fontFamily: "'Inter', sans-serif", color: "#fff", fontSize: "1.4rem", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1 }}>
-              DBZ<span style={{ color: "#dfff00" }}>.</span>
+            <span className="text-white text-2xl font-black tracking-[-0.04em]">
+              MediaPulse<span className="text-[#dfff00]">360</span>
             </span>
           </div>
 
@@ -63,12 +63,7 @@ export function Navbar() {
                 <button
                   key={link.path}
                   onClick={() => scrollToSection(link.path)}
-                  className="relative text-white hover:text-[#dfff00] transition-colors duration-300 group"
-                  style={{ 
-                    fontFamily: "'Inter', sans-serif", 
-                    fontSize: "0.95rem", 
-                    fontWeight: 500,
-                  }}
+                  className="relative text-white hover:text-[#dfff00] transition-colors duration-300 group text-sm font-bold tracking-wide"
                 >
                   {link.label}
                   <span 
@@ -82,18 +77,9 @@ export function Navbar() {
             <div className="flex items-center">
               <button
                 onClick={() => scrollToSection('#contact')}
-                className="ml-4 px-7 py-3 overflow-hidden group relative"
-                style={{
-                  background: "transparent",
-                  border: "1px solid #dfff00",
-                  fontFamily: "'Inter', sans-serif",
-                  fontSize: "0.95rem",
-                  fontWeight: 600,
-                  color: "#dfff00",
-                  borderRadius: "2px"
-                }}
+                className="ml-4 px-8 py-3.5 overflow-hidden group relative border border-[#dfff00] text-[#dfff00] text-sm font-bold tracking-wider uppercase rounded-sm"
               >
-                <span className="relative z-10 group-hover:text-black transition-colors duration-300">Let's Talk</span>
+                <span className="relative z-10 group-hover:text-black transition-colors duration-300">Contact Us</span>
                 <div className="absolute inset-0 bg-[#dfff00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left z-0"></div>
               </button>
             </div>
@@ -129,8 +115,7 @@ export function Navbar() {
                   transition={{ delay: i * 0.1 + 0.2 }}
                   key={link.path}
                   onClick={() => scrollToSection(link.path)}
-                  className="text-left text-white hover:text-[#dfff00] transition-colors text-4xl font-bold"
-                  style={{ fontFamily: "'Inter', sans-serif", letterSpacing: "-0.03em" }}
+                  className="text-left text-white hover:text-[#dfff00] transition-colors text-4xl font-black tracking-tighter"
                 >
                   {link.label}
                 </motion.button>
@@ -148,7 +133,7 @@ export function Navbar() {
                 className="w-full py-4 text-black text-center font-bold text-lg"
                 style={{ background: "#dfff00", borderRadius: "2px" }}
               >
-                Let's Talk
+                Contact Us
               </button>
             </motion.div>
           </motion.div>
@@ -157,4 +142,3 @@ export function Navbar() {
     </>
   );
 }
-

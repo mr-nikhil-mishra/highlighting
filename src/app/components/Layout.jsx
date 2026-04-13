@@ -15,7 +15,6 @@ export function Layout() {
   return (
     <div
       style={{
-        fontFamily: "'Inter', sans-serif",
         background: "#000000",
         minHeight: "100vh",
         color: "#ffffff"

@@ -18,10 +18,9 @@ export default function FooterMarquee() {
           {[...words, ...words, ...words, ...words].map((word, i) => (
             <div key={i} className="flex items-center mx-8">
               <span 
-                className="text-6xl md:text-8xl font-black text-transparent px-4"
+                className="text-6xl md:text-8xl font-black text-transparent px-4 tracking-tighter"
                 style={{ 
-                  WebkitTextStroke: "1.5px #333",
-                  fontFamily: "'Inter', sans-serif"
+                  WebkitTextStroke: "1px rgba(255,255,255,0.2)",
                 }}
               >
                 {word}

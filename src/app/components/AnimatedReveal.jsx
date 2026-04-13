@@ -13,8 +13,8 @@ export default function AnimatedReveal({ children, delay = 0, direction = 'up', 
       y: 0,
       x: 0,
       transition: {
-        duration: 0.8,
-        ease: [0.25, 0.25, 0, 1], // Custom easing for premium feel
+        duration: 1.2,
+        ease: [0.16, 1, 0.3, 1], // Custom slow down premium ease curve
         delay: delay,
       }
     }

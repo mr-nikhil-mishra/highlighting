@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 
 export default function HeroSection() {
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center justify-center pt-24 pb-12 overflow-hidden">
+    <section id="home" className="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden bg-black">
       {/* Background Vignette */}
       <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,10,0.8) 100%)' }}></div>
       <div className="absolute left-[-10%] top-[20%] w-96 h-96 bg-[#dfff00]/5 rounded-full blur-[100px] pointer-events-none"></div>
@@ -16,49 +16,48 @@ export default function HeroSection() {
             <AnimatedReveal delay={0.1}>
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] backdrop-blur-md">
                 <span className="w-2 h-2 rounded-full bg-[#dfff00] animate-pulse"></span>
-                <span className="text-sm tracking-wide text-gray-300 uppercase">Available for new projects</span>
+                <span className="text-xs font-bold tracking-[0.2em] text-[#dfff00] uppercase">Top Digital Marketing Agency</span>
               </div>
             </AnimatedReveal>
 
             <AnimatedReveal delay={0.2}>
-              <h1 className="text-5xl md:text-7xl lg:text-8xl font-black leading-[1.1] tracking-[-0.04em]">
-                MOHAMMAD <br/>
-                <span className="text-transparent" style={{ WebkitTextStroke: "1.5px #fff" }}>ZIA</span>
+              <h1 className="text-6xl md:text-7xl lg:text-[90px] font-black leading-[0.9] tracking-tighter">
+                Engineering <br/> Data-Driven <br/>
+                <span className="text-transparent" style={{ WebkitTextStroke: "2px #fff" }}>Digital Growth.</span>
               </h1>
             </AnimatedReveal>
 
             <AnimatedReveal delay={0.3}>
-              <p className="text-lg md:text-xl text-gray-400 max-w-md font-medium leading-relaxed">
-                A Digital Marketer and Website Designer, based in Dubai.
+              <p className="text-lg md:text-2xl text-gray-400 font-medium leading-relaxed max-w-lg mt-4">
+                We partner with visionary brands to attract scalable traffic, capture high-intent leads, and drive sustainable revenue through battle-tested digital strategies.
               </p>
             </AnimatedReveal>
 
             <AnimatedReveal delay={0.4}>
               <div className="flex flex-wrap items-center gap-4 mt-4">
                 <button 
-                  className="px-8 py-4 bg-[#dfff00] text-black font-bold text-lg hover:bg-white transition-colors duration-300 rounded-sm"
+                  className="px-8 py-4 bg-[#dfff00] text-black font-black text-sm uppercase tracking-widest hover:bg-white transition-colors duration-300 rounded-none shadow-[0_0_20px_rgba(223,255,0,0.15)]"
                   onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
                 >
-                  Let's Do It
+                  Start Your Project
                 </button>
-                <a 
-                  href="#" 
-                  className="px-8 py-4 bg-transparent border border-gray-700 text-white font-bold text-lg hover:border-[#dfff00] hover:text-[#dfff00] transition-colors duration-300 rounded-sm"
+                <button 
+                  onClick={() => document.querySelector('#case-studies')?.scrollIntoView({ behavior: 'smooth' })}
+                  className="px-8 py-4 bg-transparent border border-gray-600 text-white font-black text-sm uppercase tracking-widest hover:border-[#dfff00] hover:text-[#dfff00] transition-colors duration-300 rounded-none"
                 >
-                  Linkedin
-                </a>
+                  View Case Studies
+                </button>
               </div>
             </AnimatedReveal>
           </div>
 
           <AnimatedReveal delay={0.5} direction="left" className="hidden md:flex justify-end">
-             {/* The reference site just has text or a very clean visual here. We can add a striking abstract element or portrait placeholder */}
              <div className="relative w-full aspect-square max-w-[500px]">
                 <div className="absolute inset-0 bg-gradient-to-tr from-[#dfff00]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
                 <div className="absolute inset-4 border border-[#dfff00]/30 rounded-full animate-[spin_20s_linear_infinite]"></div>
                 <img 
-                  src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80" 
-                  alt="Mohammad Zia" 
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
+                  alt="Digital Growth" 
                   className="absolute inset-0 w-full h-full object-cover rounded-tl-[100px] rounded-br-[100px] grayscale hover:grayscale-0 transition-all duration-700"
                 />
              </div>

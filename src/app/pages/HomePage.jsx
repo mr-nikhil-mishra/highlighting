@@ -1,9 +1,10 @@
 import HeroSection from "../components/sections/HeroSection";
 import AboutMeSection from "../components/sections/AboutMeSection";
 import ServicesSection from "../components/sections/ServicesSection";
-import PortfolioSection from "../components/sections/PortfolioSection";
-import ExpertiseSection from "../components/sections/ExpertiseSection";
-import TestimonialSection from "../components/sections/TestimonialSection";
+import CTASection from "../components/sections/CTASection";
+import CaseStudiesSection from "../components/sections/CaseStudiesSection";
+import WhyChooseUsSection from "../components/sections/WhyChooseUsSection";
+import FAQSection from "../components/sections/FAQSection";
 import ContactSection from "../components/sections/ContactSection";
 
 export function HomePage() {
@@ -12,9 +13,10 @@ export function HomePage() {
       <HeroSection />
       <AboutMeSection />
       <ServicesSection />
-      <PortfolioSection />
-      <ExpertiseSection />
-      <TestimonialSection />
+      <CTASection />
+      <CaseStudiesSection />
+      <WhyChooseUsSection />
+      <FAQSection />
       <ContactSection />
     </>
   );

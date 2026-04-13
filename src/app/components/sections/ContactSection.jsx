@@ -1,86 +1,98 @@
 import React from 'react';
 import AnimatedReveal from '../AnimatedReveal';
+import { Phone, Mail, MapPin } from 'lucide-react';
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-24 bg-black relative border-t border-[#1a1a1a]">
+    <section id="contact" className="py-32 bg-[#050505] relative border-t border-[#1a1a1a]">
       <div className="max-w-7xl mx-auto px-6">
         
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 item-start">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-start">
           
           <AnimatedReveal direction="right">
-             <div className="bg-[#050505] border border-[#1a1a1a] p-10 md:p-12 rounded-3xl">
-                <h3 className="text-3xl font-black text-white mb-8">Send a message</h3>
-                <form className="flex flex-col gap-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+             <div className="bg-[#050505] border border-[#1a1a1a] p-10 md:p-14 rounded-[40px] relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-[#dfff00]/5 blur-3xl pointer-events-none"></div>
+                <h3 className="text-4xl font-black text-white mb-10 tracking-tight">Initiate Your Growth Phase.</h3>
+                <form className="flex flex-col gap-8 relative z-10">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div>
                       <input 
                         type="text" 
-                        placeholder="Name *" 
-                        className="w-full bg-transparent border-b border-[#333] focus:border-[#dfff00] text-white py-4 px-2 outline-none transition-colors rounded-none placeholder-gray-600"
+                        placeholder="Full Name *" 
+                        className="w-full bg-transparent border-b-2 border-[#1a1a1a] focus:border-[#dfff00] text-white py-4 px-2 outline-none transition-colors rounded-none placeholder-gray-600 font-medium"
+                        required
                       />
                     </div>
                     <div>
                       <input 
                         type="email" 
-                        placeholder="Email *" 
-                        className="w-full bg-transparent border-b border-[#333] focus:border-[#dfff00] text-white py-4 px-2 outline-none transition-colors rounded-none placeholder-gray-600"
+                        placeholder="Email Address *" 
+                        className="w-full bg-transparent border-b-2 border-[#1a1a1a] focus:border-[#dfff00] text-white py-4 px-2 outline-none transition-colors rounded-none placeholder-gray-600 font-medium"
+                        required
                       />
                     </div>
                   </div>
                   <div>
                     <input 
                       type="text" 
-                      placeholder="Looking For *" 
-                      className="w-full bg-transparent border-b border-[#333] focus:border-[#dfff00] text-white py-4 px-2 outline-none transition-colors rounded-none placeholder-gray-600"
+                      placeholder="Target Objective *" 
+                      className="w-full bg-transparent border-b-2 border-[#1a1a1a] focus:border-[#dfff00] text-white py-4 px-2 outline-none transition-colors rounded-none placeholder-gray-600 font-medium"
+                      required
                     />
                   </div>
                   <div>
                     <textarea 
-                      placeholder="Message" 
+                      placeholder="Message Details" 
                       rows="4"
-                      className="w-full bg-transparent border-b border-[#333] focus:border-[#dfff00] text-white py-4 px-2 outline-none transition-colors resize-none rounded-none placeholder-gray-600"
+                      className="w-full bg-transparent border-b-2 border-[#1a1a1a] focus:border-[#dfff00] text-white py-4 px-2 outline-none transition-colors resize-none rounded-none placeholder-gray-600 font-medium"
+                      required
                     ></textarea>
                   </div>
-                  <button className="bg-[#dfff00] text-black font-bold text-lg py-5 mt-4 hover:bg-white transition-colors duration-300 w-full rounded-md shadow-lg">
-                    Submit Message
+                  <button className="bg-[#dfff00] text-black font-black text-sm uppercase tracking-widest py-6 mt-6 hover:bg-white transition-colors duration-300 w-full rounded-none shadow-[0_0_20px_rgba(223,255,0,0.15)]">
+                    Submit Proposal Request
                   </button>
                 </form>
              </div>
           </AnimatedReveal>
 
-          <div className="flex flex-col justify-center">
+          <div className="flex flex-col justify-center py-10">
             <AnimatedReveal delay={0.2}>
-              <h2 className="text-6xl md:text-8xl font-black text-white leading-[1.1] tracking-[-0.04em] mb-12">
-                Let's make <br/>
-                <span className="text-transparent" style={{ WebkitTextStroke: "1px #dfff00" }}>something</span><br/>
-                great together.
+              <h2 className="text-7xl md:text-8xl lg:text-[100px] font-black text-white leading-[0.9] tracking-tighter mb-16">
+                Have a <br/>
+                <span className="text-transparent" style={{ WebkitTextStroke: "2px #dfff00" }}>Project</span><br/>
+                in Mind?
               </h2>
             </AnimatedReveal>
 
             <AnimatedReveal delay={0.4}>
-              <div className="flex flex-col gap-8">
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-[#111] rounded-full flex items-center justify-center border border-[#333] text-[#dfff00]">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
+              <div className="flex flex-col gap-10">
+                <div className="flex items-center gap-8 group">
+                  <div className="w-20 h-20 bg-[#111] rounded-full flex items-center justify-center border border-[#333] text-[#dfff00] group-hover:bg-[#dfff00] group-hover:text-black group-hover:border-[#dfff00] transition-colors duration-300">
+                    <Phone size={28} />
                   </div>
                   <div>
-                    <p className="text-gray-500 uppercase tracking-widest text-sm font-bold mb-1">Email Me</p>
-                    <p className="text-white font-bold text-xl hover:text-[#dfff00] cursor-pointer transition-colors">hello@dbz.com</p>
+                    <p className="text-[#dfff00] uppercase tracking-widest text-xs font-bold mb-2">Call Us</p>
+                    <p className="text-white font-black text-3xl tracking-tight group-hover:text-[#dfff00] transition-colors">+44 (74) 5906-8207</p>
                   </div>
                 </div>
 
-                <div className="flex items-start gap-4">
-                  <div className="w-12 h-12 bg-[#111] rounded-full flex items-center justify-center border border-[#333] text-[#dfff00]">
-                    <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
+                <div className="flex items-center gap-8 group">
+                  <div className="w-20 h-20 bg-[#111] rounded-full flex items-center justify-center border border-[#333] text-[#dfff00] group-hover:bg-[#dfff00] group-hover:text-black group-hover:border-[#dfff00] transition-colors duration-300">
+                    <Mail size={28} />
                   </div>
                   <div>
-                    <p className="text-gray-500 uppercase tracking-widest text-sm font-bold mb-1">Call Me</p>
-                    <p className="text-white font-bold text-xl hover:text-[#dfff00] cursor-pointer transition-colors">+971 54277-6589</p>
+                    <p className="text-[#dfff00] uppercase tracking-widest text-xs font-bold mb-2">Email</p>
+                    <p className="text-white font-black text-3xl tracking-tight group-hover:text-[#dfff00] transition-colors">Contact@mediapulse360.com</p>
+                  </div>
+                </div>
+                
+                <div className="flex items-center gap-8 group">
+                  <div className="w-20 h-20 bg-[#111] rounded-full flex items-center justify-center border border-[#333] text-[#dfff00] group-hover:bg-[#dfff00] group-hover:text-black group-hover:border-[#dfff00] transition-colors duration-300">
+                    <MapPin size={28} />
+                  </div>
+                  <div>
+                    <p className="text-[#dfff00] uppercase tracking-widest text-xs font-bold mb-2">Location</p>
+                    <p className="text-white font-black text-3xl tracking-tight group-hover:text-[#dfff00] transition-colors">London, United Kingdom</p>
                   </div>
                 </div>
               </div>
