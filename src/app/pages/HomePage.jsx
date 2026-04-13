@@ -1,21 +1,21 @@
-import { HeroSection } from "../components/HeroSection";
-import { WhyChooseUs } from "../components/WhyChooseUs";
-import { ServicesSection } from "../components/ServicesSection";
-import { StrategySection } from "../components/StrategySection";
-import { CaseStudies } from "../components/CaseStudies";
-import { Testimonials } from "../components/Testimonials";
-import { CTASection } from "../components/CTASection";
+import HeroSection from "../components/sections/HeroSection";
+import AboutMeSection from "../components/sections/AboutMeSection";
+import ServicesSection from "../components/sections/ServicesSection";
+import PortfolioSection from "../components/sections/PortfolioSection";
+import ExpertiseSection from "../components/sections/ExpertiseSection";
+import TestimonialSection from "../components/sections/TestimonialSection";
+import ContactSection from "../components/sections/ContactSection";
 
 export function HomePage() {
   return (
     <>
       <HeroSection />
-      <WhyChooseUs />
+      <AboutMeSection />
       <ServicesSection />
-      <StrategySection />
-      <CaseStudies />
-      <Testimonials />
-      <CTASection />
+      <PortfolioSection />
+      <ExpertiseSection />
+      <TestimonialSection />
+      <ContactSection />
     </>
   );
 }

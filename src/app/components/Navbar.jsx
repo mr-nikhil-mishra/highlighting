@@ -1,19 +1,10 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { Menu, X, Sun, Moon, Globe } from "lucide-react";
-import { useNavigate, useLocation } from "react-router";
-import { useTheme } from "../contexts/ThemeContext";
-import { useLanguage } from "../contexts/LanguageContext";
-import { translations } from "../translations";
+import { Menu, X } from "lucide-react";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { isDark, toggleTheme, colors } = useTheme();
-  const { language, toggleLanguage } = useLanguage();
-  const t = translations[language].nav;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -24,20 +15,19 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { label: t.home, path: "/" },
-    { label: t.services, path: "/services" },
-    { label: t.about, path: "/about" },
-    { label: t.blog, path: "/blog" },
+    { label: "Home", path: "#home" },
+    { label: "About", path: "#about" },
+    { label: "Services", path: "#services" },
+    { label: "Portfolio", path: "#portfolio" },
+    { label: "Contact", path: "#contact" },
   ];
 
-  const isActive = (path) => {
-    if (path === "/") return location.pathname === "/";
-    return location.pathname.startsWith(path);
-  };
-
-  const handleNav = (path) => {
-    navigate(path);
+  const scrollToSection = (id) => {
     setMobileOpen(false);
+    const element = document.querySelector(id);
+    if(element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -48,11 +38,9 @@ export function Navbar() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="fixed top-0 w-full z-50 transition-all duration-300"
         style={{
-          background: scrolled 
-            ? (isDark ? "rgba(10, 10, 10, 0.85)" : "rgba(255, 255, 255, 0.85)") 
-            : "transparent",
-          backdropFilter: scrolled ? "blur(20px)" : "none",
-          borderBottom: scrolled ? `1px solid ${colors.border}` : "1px solid transparent",
+          background: scrolled ? "rgba(0, 0, 0, 0.95)" : "transparent",
+          backdropFilter: scrolled ? "blur(10px)" : "none",
+          borderBottom: scrolled ? `1px solid rgba(255,255,255,0.05)` : "1px solid transparent",
           padding: scrolled ? "1rem 0" : "1.5rem 0",
         }}
       >
@@ -60,109 +48,64 @@ export function Navbar() {
           
           {/* Logo */}
           <div 
-            className="flex items-center gap-2.5 cursor-pointer group"
-            onClick={() => handleNav("/")}
+            className="flex flex-col cursor-pointer"
+            onClick={() => scrollToSection('#home')}
           >
-            <div 
-              className="w-10 h-10 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-105"
-              style={{ background: "linear-gradient(135deg, var(--brand-neon), var(--brand-dark))", boxShadow: "0 4px 20px rgba(var(--brand-neon-rgb), 0.3)" }}
-            >
-              <svg width="22" height="22" viewBox="0 0 28 28" fill="none">
-                <path d="M4 20L14 4L24 20H4Z" fill="#050505" />
-              </svg>
-            </div>
-            <span style={{ fontFamily: "'Space Grotesk', sans-serif", color: colors.text, fontSize: "1.25rem", fontWeight: 700, letterSpacing: "-0.02em" }}>
-              HIGHLIGHT&nbsp;<span style={{ color: "var(--brand-neon)" }}>MARKETING</span>
+            <span style={{ fontFamily: "'Inter', sans-serif", color: "#fff", fontSize: "1.4rem", fontWeight: 800, letterSpacing: "-0.03em", lineHeight: 1 }}>
+              DBZ<span style={{ color: "#dfff00" }}>.</span>
             </span>
           </div>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-8">
-            <div className="flex items-center gap-6" style={{ background: scrolled ? "transparent" : (isDark ? "rgba(255,255,255,0.03)" : "rgba(0,0,0,0.03)"), padding: "0.5rem 1.5rem", borderRadius: "100px", backdropFilter: "blur(10px)" }}>
+            <div className="flex items-center gap-8">
               {navLinks.map((link) => (
                 <button
                   key={link.path}
-                  onClick={() => handleNav(link.path)}
-                  className="relative px-2 py-1 transition-colors duration-300 group"
+                  onClick={() => scrollToSection(link.path)}
+                  className="relative text-white hover:text-[#dfff00] transition-colors duration-300 group"
                   style={{ 
-                    fontFamily: "'Space Grotesk', sans-serif", 
-                    fontSize: "0.9rem", 
+                    fontFamily: "'Inter', sans-serif", 
+                    fontSize: "0.95rem", 
                     fontWeight: 500,
-                    color: isActive(link.path) ? (isDark ? "#fff" : "#000") : colors.textMuted,
                   }}
                 >
                   {link.label}
                   <span 
-                    className="absolute bottom-0 left-0 w-full h-0.5 rounded-full transition-transform duration-300"
-                    style={{ 
-                      background: "var(--brand-neon)", 
-                      transform: isActive(link.path) ? "scaleX(1)" : "scaleX(0)",
-                      transformOrigin: "left"
-                    }}
+                    className="absolute -bottom-1 left-0 w-full h-[2px] rounded-full transition-transform duration-300 scale-x-0 group-hover:scale-x-100"
+                    style={{ background: "#dfff00", transformOrigin: "left" }}
                   />
-                  {!isActive(link.path) && (
-                    <span 
-                       className="absolute bottom-0 left-0 w-full h-0.5 rounded-full transition-transform duration-300 scale-x-0 group-hover:scale-x-100"
-                       style={{ background: colors.border, transformOrigin: "left" }}
-                    />
-                  )}
                 </button>
               ))}
             </div>
 
-            <div className="flex items-center gap-3">
-              <button 
-                onClick={toggleLanguage}
-                className="h-10 px-3 rounded-full flex items-center justify-center gap-2 transition-all duration-300 hover:scale-105"
-                style={{ background: colors.card, border: `1px solid ${colors.border}`, color: colors.text }}
-                aria-label="Toggle Language"
-              >
-                <Globe size={18} />
-                <span style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "0.85rem", fontWeight: 600 }}>
-                  {language.toUpperCase()}
-                </span>
-              </button>
-              <button 
-                onClick={toggleTheme}
-                className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 hover:rotate-12"
-                style={{ background: colors.card, border: `1px solid ${colors.border}`, color: colors.text }}
-                aria-label="Toggle Theme"
-              >
-                {isDark ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
-              
+            <div className="flex items-center">
               <button
-                onClick={() => handleNav("/contact")}
-                className="ml-2 px-6 py-2.5 rounded-full transition-all duration-300 hover:scale-105 hover:shadow-lg"
+                onClick={() => scrollToSection('#contact')}
+                className="ml-4 px-7 py-3 overflow-hidden group relative"
                 style={{
-                  background: "linear-gradient(135deg, var(--brand-neon), var(--brand-dark))",
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "0.9rem",
+                  background: "transparent",
+                  border: "1px solid #dfff00",
+                  fontFamily: "'Inter', sans-serif",
+                  fontSize: "0.95rem",
                   fontWeight: 600,
-                  color: "#050505",
-                  boxShadow: "0 4px 15px rgba(var(--brand-neon-rgb), 0.2)"
+                  color: "#dfff00",
+                  borderRadius: "2px"
                 }}
               >
-                {translations[language].pages.contact.bookBtn}
+                <span className="relative z-10 group-hover:text-black transition-colors duration-300">Let's Talk</span>
+                <div className="absolute inset-0 bg-[#dfff00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left z-0"></div>
               </button>
             </div>
           </div>
 
           {/* Mobile Toggle */}
-          <div className="md:hidden flex items-center gap-3">
-             <button 
-                onClick={toggleTheme}
-                className="w-10 h-10 rounded-full flex items-center justify-center"
-                style={{ background: colors.card, border: `1px solid ${colors.border}`, color: colors.text }}
-              >
-                {isDark ? <Sun size={18} /> : <Moon size={18} />}
-              </button>
+          <div className="md:hidden flex items-center">
             <button
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="w-10 h-10 rounded-full flex items-center justify-center transition-transform hover:scale-105"
-              style={{ background: colors.card, border: `1px solid ${colors.border}`, color: colors.text }}
+              className="text-white hover:text-[#dfff00] transition-colors"
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={28} /> : <Menu size={28} />}
             </button>
           </div>
         </div>
@@ -172,63 +115,42 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
-            transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 md:hidden flex flex-col pt-24 px-6 pb-6"
-            style={{ 
-              background: isDark ? "rgba(10, 10, 10, 0.98)" : "rgba(255, 255, 255, 0.98)",
-              backdropFilter: "blur(20px)"
-            }}
+            initial={{ opacity: 0, x: '100%' }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: '100%' }}
+            transition={{ duration: 0.4, ease: [0.25, 0.25, 0, 1] }}
+            className="fixed inset-0 z-40 bg-black flex flex-col pt-24 px-8 pb-8"
           >
-            <div className="flex flex-col gap-2 mt-4 flex-1">
+            <div className="flex flex-col gap-6 mt-8 flex-1">
               {navLinks.map((link, i) => (
                 <motion.button
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: i * 0.1 }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: i * 0.1 + 0.2 }}
                   key={link.path}
-                  onClick={() => handleNav(link.path)}
-                  className="flex items-center justify-between py-4 border-b w-full text-left"
-                  style={{ 
-                    borderColor: colors.border,
-                    color: isActive(link.path) ? "var(--brand-neon)" : colors.text,
-                    fontFamily: "'Space Grotesk', sans-serif",
-                    fontSize: "1.5rem",
-                    fontWeight: 600
-                  }}
+                  onClick={() => scrollToSection(link.path)}
+                  className="text-left text-white hover:text-[#dfff00] transition-colors text-4xl font-bold"
+                  style={{ fontFamily: "'Inter', sans-serif", letterSpacing: "-0.03em" }}
                 >
                   {link.label}
-                  <span style={{ fontSize: "1rem", opacity: isActive(link.path) ? 1 : 0.3 }}>→</span>
                 </motion.button>
               ))}
             </div>
 
-            <div className="flex flex-col gap-4 mt-auto">
-              <button 
-                onClick={toggleLanguage}
-                className="flex items-center justify-center gap-2 w-full py-4 rounded-xl"
-                style={{ background: colors.card, border: `1px solid ${colors.border}`, color: colors.text, fontFamily: "'Space Grotesk', sans-serif", fontWeight: 500 }}
-              >
-                <Globe size={18} />
-                Language: {{ en: "English", ar: "العربية", fr: "Français", es: "Español", de: "Deutsch" }[language]}
-              </button>
-              
+            <motion.div 
+               initial={{ opacity: 0 }}
+               animate={{ opacity: 1 }}
+               transition={{ delay: 0.6 }}
+               className="mt-auto"
+            >
               <button
-                onClick={() => handleNav("/contact")}
-                className="w-full py-4 rounded-xl text-center shadow-lg"
-                style={{
-                  background: "linear-gradient(135deg, var(--brand-neon), var(--brand-dark))",
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  fontSize: "1.1rem",
-                  fontWeight: 600,
-                  color: "#050505",
-                }}
+                onClick={() => scrollToSection('#contact')}
+                className="w-full py-4 text-black text-center font-bold text-lg"
+                style={{ background: "#dfff00", borderRadius: "2px" }}
               >
-                {translations[language].pages.contact.bookBtn}
+                Let's Talk
               </button>
-            </div>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

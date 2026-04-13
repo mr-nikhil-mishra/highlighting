@@ -1,7 +1,5 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect } from "react";
 import { translations } from "../translations";
-
-const LANGUAGES = ['en', 'ar', 'fr', 'es', 'de'];
 
 const LanguageContext = createContext({
   language: "en",
@@ -10,24 +8,15 @@ const LanguageContext = createContext({
 });
 
 export function LanguageProvider({ children }) {
-  const [language, setLanguage] = useState("en");
+  const isRTL = false;
+  const language = "en";
 
-  const isRTL = language === "ar";
-
-  const toggleLanguage = () => {
-    setLanguage((prev) => {
-      const currentIndex = LANGUAGES.indexOf(prev);
-      const nextIndex = (currentIndex + 1) % LANGUAGES.length;
-      const next = LANGUAGES[nextIndex];
-      localStorage.setItem("apex-language", next);
-      return next;
-    });
-  };
+  const toggleLanguage = () => {};
 
   useEffect(() => {
-    document.documentElement.dir = isRTL ? "rtl" : "ltr";
-    document.documentElement.lang = language;
-  }, [language, isRTL]);
+    document.documentElement.dir = "ltr";
+    document.documentElement.lang = "en";
+  }, []);
 
   return (
     <LanguageContext.Provider value={{ language, toggleLanguage, isRTL }}>

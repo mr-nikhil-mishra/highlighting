@@ -1,6 +1,6 @@
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
-import { useTheme } from "../contexts/ThemeContext";
+
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../translations";
 
@@ -15,7 +15,7 @@ function Card({ reason, index, colors }) {
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
       className="group relative p-8 rounded-3xl cursor-default overflow-hidden"
-      style={{ background: colors.card, border: `1px solid ${colors.border}`, transition: "all 0.4s ease" }}
+      style={{ background: "#050505", border: "1px solid rgba(255,255,255,0.08)", transition: "all 0.4s ease" }}
       whileHover={{ scale: 1.03, y: -5 }}
     >
       <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-3xl"
@@ -46,10 +46,10 @@ function Card({ reason, index, colors }) {
         </motion.div>
       </div>
 
-      <h3 className="mb-3 relative z-10" style={{ fontFamily: "'Space Grotesk', sans-serif", color: colors.text, fontSize: "1.15rem", fontWeight: 600, letterSpacing: "-0.01em", transition: "color 0.3s ease" }}>
+      <h3 className="mb-3 relative z-10" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#ffffff", fontSize: "1.15rem", fontWeight: 700, letterSpacing: "-0.01em" }}>
         {reason.title}
       </h3>
-      <p className="relative z-10" style={{ fontFamily: "'Inter', sans-serif", color: colors.textMuted, fontSize: "0.9rem", lineHeight: 1.65, transition: "color 0.3s ease" }}>
+      <p className="relative z-10" style={{ fontFamily: "'Inter', sans-serif", color: "rgba(255,255,255,0.6)", fontSize: "0.9rem", lineHeight: 1.65 }}>
         {reason.desc}
       </p>
 
@@ -62,12 +62,12 @@ function Card({ reason, index, colors }) {
 export function WhyChooseUs() {
   const titleRef = useRef(null);
   const titleInView = useInView(titleRef, { once: true, margin: "-80px" });
-  const { colors } = useTheme();
+
   const { language } = useLanguage();
   const t = translations[language].whyChooseUs;
 
   return (
-    <section id="about" className="py-24 relative overflow-hidden" style={{ background: colors.bg, transition: "background-color 0.4s ease" }}>
+    <section id="about" className="py-24 relative overflow-hidden" style={{ background: "#000000" }}>
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-px"
         style={{ background: "linear-gradient(90deg, transparent, rgba(var(--brand-neon-rgb),0.3), transparent)" }} />
 
@@ -80,24 +80,24 @@ export function WhyChooseUs() {
           className="text-center mb-16"
         >
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
-            style={{ background: colors.badgeBg, border: `1px solid ${colors.badgeBorder}` }}>
-            <span style={{ fontFamily: "'Space Grotesk', sans-serif", color: "var(--brand-neon)", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.1em" }}>
+            style={{ background: "rgba(var(--brand-neon-rgb),0.1)", border: "1px solid rgba(var(--brand-neon-rgb),0.25)" }}>
+            <span style={{ fontFamily: "'Space Grotesk', sans-serif", color: "var(--brand-neon)", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>
               {t.badge}
             </span>
           </div>
 
-          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, color: colors.text, letterSpacing: "-0.03em", marginBottom: "16px", transition: "color 0.3s ease" }}>
+          <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, color: "#ffffff", letterSpacing: "-0.03em", marginBottom: "16px", textTransform: "uppercase" }}>
             {t.titleMain}{" "}
-            <span style={{ color: "var(--brand-neon)", textShadow: "0 0 30px rgba(var(--brand-neon-rgb),0.4)" }}>{t.titleAccent}</span>
+            <span style={{ color: "var(--brand-neon)", textShadow: "0 0 30px rgba(var(--brand-neon-rgb),0.3)" }}>{t.titleAccent}</span>
           </h2>
-          <p style={{ fontFamily: "'Inter', sans-serif", color: colors.textMuted, fontSize: "1.05rem", maxWidth: "520px", margin: "0 auto", lineHeight: 1.7, transition: "color 0.3s ease" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", color: "rgba(255,255,255,0.5)", fontSize: "1.05rem", maxWidth: "520px", margin: "0 auto", lineHeight: 1.7 }}>
             {t.subtitle}
           </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
           {t.reasons.map((reason, index) => (
-            <Card key={reason.number} reason={reason} index={index} colors={colors} />
+            <Card key={reason.number} reason={reason} index={index} />
           ))}
         </div>
       </div>

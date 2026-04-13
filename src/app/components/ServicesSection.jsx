@@ -1,7 +1,7 @@
-﻿import { useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { Search, Share2, Globe, TrendingUp, Film, Mail, BarChart3, Smartphone } from "lucide-react";
-import { useTheme } from "../contexts/ThemeContext";
+
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../translations";
 
@@ -17,12 +17,12 @@ function ServiceCard({ item, icon: Icon, color, index, colors }) {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 60 }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, delay: (index % 4) * 0.1, ease: "easeOut" }}
+      transition={{ duration: 0.6, delay: (index % 4) * 0.15, ease: [0.16, 1, 0.3, 1] }}
       className="group relative p-7 rounded-3xl cursor-default overflow-hidden"
-      style={{ background: colors.card, border: `1px solid ${colors.border}` }}
-      whileHover={{ scale: 1.02, y: -4 }}
+      style={{ background: "#050505", border: `1px solid rgba(255,255,255,0.08)` }}
+      whileHover={{ scale: 1.02, y: -4, borderColor: "rgba(var(--brand-neon-rgb),0.5)" }}
     >
       <div className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
         style={{ background: `linear-gradient(135deg, ${color}08, transparent 60%)`, border: `1px solid ${color}30` }} />
@@ -36,10 +36,10 @@ function ServiceCard({ item, icon: Icon, color, index, colors }) {
         <Icon size={24} style={{ color }} />
       </motion.div>
 
-      <h3 className="mb-3 relative z-10" style={{ fontFamily: "'Space Grotesk', sans-serif", color: colors.text, fontSize: "1.1rem", fontWeight: 600, letterSpacing: "-0.01em", transition: "color 0.3s ease" }}>
+      <h3 className="mb-3 relative z-10" style={{ fontFamily: "'Space Grotesk', sans-serif", color: "#ffffff", fontSize: "1.2rem", fontWeight: 700, letterSpacing: "-0.01em" }}>
         {item.title}
       </h3>
-      <p className="relative z-10" style={{ fontFamily: "'Inter', sans-serif", color: colors.textMuted, fontSize: "0.875rem", lineHeight: 1.65, transition: "color 0.3s ease" }}>
+      <p className="relative z-10" style={{ fontFamily: "'Inter', sans-serif", color: "rgba(255,255,255,0.6)", fontSize: "0.9rem", lineHeight: 1.65 }}>
         {item.desc}
       </p>
 
@@ -57,14 +57,14 @@ function ServiceCard({ item, icon: Icon, color, index, colors }) {
 export function ServicesSection() {
   const titleRef = useRef(null);
   const inView = useInView(titleRef, { once: true, margin: "-80px" });
-  const { colors } = useTheme();
+
   const { language } = useLanguage();
   const t = translations[language].services;
 
   return (
-    <section id="services" className="py-24 relative" style={{ background: colors.bgAlt, transition: "background-color 0.4s ease" }}>
+    <section id="services" className="py-24 relative" style={{ background: "#000000" }}>
       <div className="absolute top-0 left-0 right-0 h-px"
-        style={{ background: `linear-gradient(90deg, transparent, ${colors.border}, transparent)` }} />
+        style={{ background: `linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent)` }} />
       <div className="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 rounded-full pointer-events-none opacity-10"
         style={{ background: "radial-gradient(circle, var(--brand-neon), transparent)", filter: "blur(80px)" }} />
 
@@ -78,18 +78,18 @@ export function ServicesSection() {
         >
           <div>
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-6"
-              style={{ background: colors.badgeBg, border: `1px solid ${colors.badgeBorder}` }}>
-              <span style={{ fontFamily: "'Space Grotesk', sans-serif", color: "var(--brand-neon)", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.1em" }}>
+              style={{ background: "rgba(var(--brand-neon-rgb),0.1)", border: `1px solid rgba(var(--brand-neon-rgb),0.25)` }}>
+              <span style={{ fontFamily: "'Space Grotesk', sans-serif", color: "var(--brand-neon)", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.1em", textTransform: "uppercase" }}>
                 {t.badge}
               </span>
             </div>
-            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 700, color: colors.text, letterSpacing: "-0.03em", lineHeight: 1.1, transition: "color 0.3s ease" }}>
+            <h2 style={{ fontFamily: "'Space Grotesk', sans-serif", fontSize: "clamp(2rem, 4vw, 3rem)", fontWeight: 800, color: "#ffffff", letterSpacing: "-0.03em", lineHeight: 1.1, textTransform: "uppercase" }}>
               {t.titleMain}{" "}
-              <span style={{ color: "var(--brand-neon)", textShadow: "0 0 30px rgba(var(--brand-neon-rgb),0.4)" }}>{t.titleAccent}</span>
+              <span style={{ color: "var(--brand-neon)", textShadow: "0 0 30px rgba(var(--brand-neon-rgb),0.3)" }}>{t.titleAccent}</span>
               <br />{t.titleEnd}
             </h2>
           </div>
-          <p style={{ fontFamily: "'Inter', sans-serif", color: colors.textMuted, fontSize: "1rem", maxWidth: "320px", lineHeight: 1.7, transition: "color 0.3s ease" }}>
+          <p style={{ fontFamily: "'Inter', sans-serif", color: "rgba(255,255,255,0.5)", fontSize: "1rem", maxWidth: "320px", lineHeight: 1.7 }}>
             {t.subtitle}
           </p>
         </motion.div>
@@ -102,7 +102,6 @@ export function ServicesSection() {
               icon={serviceIcons[index]}
               color={serviceColors[index]}
               index={index}
-              colors={colors}
             />
           ))}
         </div>

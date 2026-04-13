@@ -1,41 +1,22 @@
-﻿import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useEffect } from "react";
 
 const darkColors = {
-  bg: "#050505",
-  bgAlt: "#080808",
-  bgDeep: "#030303",
+  bg: "#000000",
+  bgAlt: "#050505",
+  bgDeep: "#000000",
   text: "#ffffff",
-  textMuted: "rgba(255,255,255,0.45)",
-  textDim: "rgba(255,255,255,0.25)",
+  textMuted: "rgba(255,255,255,0.6)",
+  textDim: "rgba(255,255,255,0.4)",
   card: "rgba(255,255,255,0.03)",
   cardHover: "rgba(255,255,255,0.06)",
-  border: "rgba(255,255,255,0.07)",
-  borderHover: "rgba(var(--brand-neon-rgb),0.35)",
-  navBg: "rgba(5,5,5,0.92)",
-  mobileMenu: "rgba(10,10,10,0.97)",
-  badgeBg: "rgba(var(--brand-neon-rgb),0.08)",
-  badgeBorder: "rgba(var(--brand-neon-rgb),0.2)",
+  border: "rgba(255,255,255,0.08)",
+  borderHover: "rgba(var(--brand-neon-rgb),0.5)",
+  navBg: "rgba(0,0,0,0.9)",
+  mobileMenu: "rgba(5,5,5,0.98)",
+  badgeBg: "rgba(var(--brand-neon-rgb),0.1)",
+  badgeBorder: "rgba(var(--brand-neon-rgb),0.25)",
   inputBg: "rgba(255,255,255,0.04)",
   inputBorder: "rgba(255,255,255,0.1)",
-};
-
-const lightColors = {
-  bg: "#f5f5f0",
-  bgAlt: "#edede8",
-  bgDeep: "#e6e6e1",
-  text: "#0a0a0a",
-  textMuted: "rgba(10,10,10,0.55)",
-  textDim: "rgba(10,10,10,0.35)",
-  card: "rgba(0,0,0,0.04)",
-  cardHover: "rgba(0,0,0,0.07)",
-  border: "rgba(0,0,0,0.09)",
-  borderHover: "rgba(150,180,0,0.5)",
-  navBg: "rgba(245,245,240,0.95)",
-  mobileMenu: "rgba(248,248,244,0.98)",
-  badgeBg: "rgba(180,215,0,0.1)",
-  badgeBorder: "rgba(150,180,0,0.3)",
-  inputBg: "rgba(0,0,0,0.04)",
-  inputBorder: "rgba(0,0,0,0.12)",
 };
 
 const ThemeContext = createContext({
@@ -46,30 +27,22 @@ const ThemeContext = createContext({
 });
 
 export function ThemeProvider({ children }) {
-  const [theme, setTheme] = useState(() => {
-    const saved = localStorage.getItem("apex-theme");
-    return saved || "dark";
-  });
-
-  const isDark = theme === "dark";
-  const colors = isDark ? darkColors : lightColors;
+  const isDark = true;
+  const colors = darkColors;
 
   const toggleTheme = () => {
-    setTheme((prev) => {
-      const next = prev === "dark" ? "light" : "dark";
-      localStorage.setItem("apex-theme", next);
-      return next;
-    });
+    // Disabled functionality for locked aesthetic
+    console.log("Theme is locked to dark mode for this aesthetic.");
   };
 
   useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-    document.body.style.background = isDark ? "#050505" : "#f5f5f0";
-    document.body.style.transition = "background-color 0.4s ease";
-  }, [theme, isDark]);
+    document.documentElement.setAttribute("data-theme", "dark");
+    document.body.style.background = "#000000";
+    document.body.style.color = "#ffffff";
+  }, []);
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme, isDark, colors }}>
+    <ThemeContext.Provider value={{ theme: "dark", toggleTheme, isDark, colors }}>
       {children}
     </ThemeContext.Provider>
   );

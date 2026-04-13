@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { X } from "lucide-react";
-import { useTheme } from "../contexts/ThemeContext";
+
 import { useLanguage } from "../contexts/LanguageContext";
 
 export function WhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(true);
-  const { isDark } = useTheme();
   const { language } = useLanguage();
   const isAr = language === "ar";
 
@@ -23,7 +22,7 @@ export function WhatsAppButton() {
             exit={{ opacity: 0, scale: 0.8, y: 10 }}
             className="flex items-start gap-3 p-4 rounded-2xl max-w-xs"
             style={{
-              background: isDark ? "rgba(10,10,10,0.95)" : "rgba(248,248,244,0.97)",
+              background: "rgba(10,10,10,0.95)",
               border: "1px solid rgba(37,211,102,0.3)",
               backdropFilter: "blur(20px)",
               boxShadow: "0 10px 40px rgba(0,0,0,0.2)",
@@ -33,7 +32,7 @@ export function WhatsAppButton() {
               <p
                 style={{
                   fontFamily: "'Space Grotesk', sans-serif",
-                  color: isDark ? "#fff" : "#0a0a0a",
+                  color: "#ffffff",
                   fontSize: "0.875rem",
                   fontWeight: 600,
                   marginBottom: "2px",
@@ -44,7 +43,7 @@ export function WhatsAppButton() {
               <p
                 style={{
                   fontFamily: "'Inter', sans-serif",
-                  color: isDark ? "rgba(255,255,255,0.5)" : "rgba(10,10,10,0.5)",
+                  color: "rgba(255,255,255,0.5)",
                   fontSize: "0.775rem",
                   lineHeight: 1.5,
                 }}
@@ -57,7 +56,7 @@ export function WhatsAppButton() {
             <button
               onClick={() => setShowTooltip(false)}
               style={{
-                color: isDark ? "rgba(255,255,255,0.3)" : "rgba(10,10,10,0.3)",
+                color: "rgba(255,255,255,0.3)",
                 background: "none",
                 border: "none",
                 cursor: "pointer",

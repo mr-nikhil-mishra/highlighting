@@ -1,12 +1,10 @@
 import { Outlet, useLocation } from "react-router";
 import { useEffect } from "react";
 import { Navbar } from "./Navbar";
-import { Footer } from "./Footer";
-import { WhatsAppButton } from "./WhatsAppButton";
-import { useTheme } from "../contexts/ThemeContext";
+import FooterMarquee from "./FooterMarquee";
+import FloatingWhatsApp from "./FloatingWhatsApp";
 
 export function Layout() {
-  const { colors } = useTheme();
   const { pathname } = useLocation();
 
   // Scroll to top on route change
@@ -17,18 +15,18 @@ export function Layout() {
   return (
     <div
       style={{
-        fontFamily: "'Space Grotesk', 'Inter', sans-serif",
-        background: colors.bg,
+        fontFamily: "'Inter', sans-serif",
+        background: "#000000",
         minHeight: "100vh",
-        transition: "background-color 0.4s ease",
+        color: "#ffffff"
       }}
     >
       <Navbar />
       <main>
         <Outlet />
       </main>
-      <Footer />
-      <WhatsAppButton />
+      <FooterMarquee />
+      <FloatingWhatsApp />
     </div>
   );
 }
