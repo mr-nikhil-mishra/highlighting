@@ -1,79 +1,227 @@
-import React from 'react';
-import AnimatedReveal from '../AnimatedReveal';
-import { motion } from 'motion/react';
+import React from "react";
+import { motion } from "motion/react";
+import { SITE_CONFIG } from "../../../config/site.config";
+
+const EASE = [0.16, 1, 0.3, 1];
+
+const stats = [
+  { value: "8+", label: "Core Services" },
+  { value: "3×", label: "Average ROI" },
+  { value: "100%", label: "Client Satisfaction" },
+];
 
 export default function HeroSection() {
+  const scrollTo = (id) => document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+
   return (
-    <section id="home" className="relative min-h-[90vh] flex items-center pt-24 pb-12 overflow-hidden bg-black">
-      {/* Background Vignette */}
-      <div className="absolute inset-0 pointer-events-none" style={{ background: 'radial-gradient(circle at 50% 50%, transparent 40%, rgba(0,0,10,0.8) 100%)' }}></div>
-      <div className="absolute left-[-10%] top-[20%] w-96 h-96 bg-[#dfff00]/5 rounded-full blur-[100px] pointer-events-none"></div>
+    <section
+      id="home"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden"
+      style={{ background: "#000000" }}
+    >
+      {/* Subtle radial glow — matches digitalbyzia */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "radial-gradient(ellipse 60% 55% at 58% 38%, rgba(237,244,6,0.05) 0%, transparent 70%)",
+        }}
+      />
 
-      <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-          
-          <div className="flex flex-col items-start gap-6">
-            <AnimatedReveal delay={0.1}>
-              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.03)] backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-[#dfff00] animate-pulse"></span>
-                <span className="text-xs font-bold tracking-[0.2em] text-[#dfff00] uppercase">Top Digital Marketing Agency</span>
-              </div>
-            </AnimatedReveal>
+      <div
+        className="relative z-10 w-full"
+        style={{ maxWidth: "1300px", margin: "0 auto", padding: "10rem 1.5rem 5rem" }}
+      >
+        {/* Badge pill */}
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: EASE, delay: 0.05 }}
+          style={{ marginBottom: "2rem" }}
+        >
+          <span
+            className="inline-flex items-center gap-2 font-black text-[#EDF406] border border-[#EDF406]/40 uppercase"
+            style={{ fontSize: "11px", letterSpacing: "0.22em", padding: "0.5rem 1.2rem", borderRadius: "9999px" }}
+          >
+            <span
+              className="rounded-full bg-[#EDF406] animate-pulse"
+              style={{ width: "6px", height: "6px", flexShrink: 0 }}
+            />
+            Digital Marketing Agency · London, UK
+          </span>
+        </motion.div>
 
-            <AnimatedReveal delay={0.2}>
-              <h1 className="text-6xl md:text-7xl lg:text-[90px] font-black leading-[0.9] tracking-tighter">
-                Engineering <br/> Data-Driven <br/>
-                <span className="text-transparent" style={{ WebkitTextStroke: "2px #fff" }}>Digital Growth.</span>
-              </h1>
-            </AnimatedReveal>
-
-            <AnimatedReveal delay={0.3}>
-              <p className="text-lg md:text-2xl text-gray-400 font-medium leading-relaxed max-w-lg mt-4">
-                We partner with visionary brands to attract scalable traffic, capture high-intent leads, and drive sustainable revenue through battle-tested digital strategies.
-              </p>
-            </AnimatedReveal>
-
-            <AnimatedReveal delay={0.4}>
-              <div className="flex flex-wrap items-center gap-4 mt-4">
-                <button 
-                  className="px-8 py-4 bg-[#dfff00] text-black font-black text-sm uppercase tracking-widest hover:bg-white transition-colors duration-300 rounded-none shadow-[0_0_20px_rgba(223,255,0,0.15)]"
-                  onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-                >
-                  Start Your Project
-                </button>
-                <button 
-                  onClick={() => document.querySelector('#case-studies')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="px-8 py-4 bg-transparent border border-gray-600 text-white font-black text-sm uppercase tracking-widest hover:border-[#dfff00] hover:text-[#dfff00] transition-colors duration-300 rounded-none"
-                >
-                  View Case Studies
-                </button>
-              </div>
-            </AnimatedReveal>
-          </div>
-
-          <AnimatedReveal delay={0.5} direction="left" className="hidden md:flex justify-end">
-             <div className="relative w-full aspect-square max-w-[500px]">
-                <div className="absolute inset-0 bg-gradient-to-tr from-[#dfff00]/20 to-transparent rounded-full blur-3xl animate-pulse"></div>
-                <div className="absolute inset-4 border border-[#dfff00]/30 rounded-full animate-[spin_20s_linear_infinite]"></div>
-                <img 
-                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" 
-                  alt="Digital Growth" 
-                  className="absolute inset-0 w-full h-full object-cover rounded-tl-[100px] rounded-br-[100px] grayscale hover:grayscale-0 transition-all duration-700"
-                />
-             </div>
-          </AnimatedReveal>
+        {/* H1 — fully solid bold, single line like reference */}
+        <div style={{ overflow: "hidden", marginBottom: "2.5rem" }}>
+          <motion.h1
+            initial={{ y: "110%" }}
+            animate={{ y: 0 }}
+            transition={{ duration: 1.1, ease: EASE, delay: 0.14 }}
+            className="font-black text-white"
+            style={{
+              fontSize: "70px",
+              letterSpacing: "-0.055em",
+              lineHeight: 0.88,
+              display: "block",
+              color: "#ffffff",
+              paddingBottom:"10px"
+            }}
+          >
+            HIGHLIGHT Marketing
+          </motion.h1>
         </div>
 
-        {/* Scroll Indicator */}
-        <AnimatedReveal delay={1} className="absolute bottom-[-10px] left-6 md:left-auto md:right-6 flex flex-col items-center gap-2">
-           <span className="text-xs uppercase tracking-widest text-gray-500 [writing-mode:vertical-rl] rotate-180">Scroll</span>
-           <motion.div 
-             animate={{ y: [0, 10, 0] }} 
-             transition={{ duration: 1.5, repeat: Infinity }}
-             className="w-[1px] h-12 bg-gradient-to-b from-gray-500 to-transparent"
-           ></motion.div>
-        </AnimatedReveal>
+        {/* Subtext */}
+        <motion.p
+          initial={{ opacity: 0, y: 24 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: EASE, delay: 0.38 }}
+          style={{
+            color: "#a3a3a3",
+            fontSize: "19px",
+            lineHeight: 1.68,
+            fontWeight: 500,
+            maxWidth: "480px",
+            marginBottom: "2.5rem",
+          }}
+        >
+          We help businesses attract more traffic, generate qualified leads,
+          and increase sales — using{" "}
+          <span style={{ color: "#ffffff", fontWeight: 600 }}>
+            strategies that actually work.
+          </span>
+        </motion.p>
+
+        {/* CTA Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: EASE, delay: 0.5 }}
+          style={{ display: "flex", flexWrap: "wrap", gap: "1rem", marginBottom: "5.5rem" }}
+        >
+          <button
+            onClick={() => scrollTo("#contact")}
+            className="font-black text-black hover:text-black"
+            style={{
+              background: "#EDF406",
+              fontSize: "12.5px",
+              letterSpacing: "0.13em",
+              textTransform: "uppercase",
+              padding: "1rem 2.5rem",
+              borderRadius: "9999px",
+              border: "none",
+              cursor: "pointer",
+              boxShadow: "0 0 32px rgba(237,244,6,0.2)",
+              transition: "background 0.3s, box-shadow 0.3s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.background = "#ffffff";
+              e.currentTarget.style.boxShadow = "0 0 32px rgba(255,255,255,0.2)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.background = "#EDF406";
+              e.currentTarget.style.boxShadow = "0 0 32px rgba(237,244,6,0.2)";
+            }}
+          >
+            {SITE_CONFIG.cta.hero}
+          </button>
+          <button
+            onClick={() => scrollTo("#services")}
+            className="font-black text-white"
+            style={{
+              background: "transparent",
+              fontSize: "12.5px",
+              letterSpacing: "0.13em",
+              textTransform: "uppercase",
+              padding: "1rem 2.5rem",
+              borderRadius: "9999px",
+              border: "1.5px solid rgba(255,255,255,0.2)",
+              cursor: "pointer",
+              transition: "border-color 0.3s, color 0.3s",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.borderColor = "#EDF406";
+              e.currentTarget.style.color = "#EDF406";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)";
+              e.currentTarget.style.color = "#ffffff";
+            }}
+          >
+            {SITE_CONFIG.cta.heroSecondary}
+          </button>
+        </motion.div>
+
+        {/* Stats row */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.85, ease: EASE, delay: 0.64 }}
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "3.5rem",
+            paddingTop: "2.25rem",
+            borderTop: "1px solid rgba(255,255,255,0.09)",
+          }}
+        >
+          {stats.map((s) => (
+            <div key={s.label} style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+              <span
+                className="font-black text-white"
+                style={{ fontSize: "clamp(38px, 5vw, 56px)", letterSpacing: "-0.055em", lineHeight: 1 }}
+              >
+                {s.value}
+              </span>
+              <span
+                className="font-bold"
+                style={{ color: "#444", fontSize: "10.5px", letterSpacing: "0.2em", textTransform: "uppercase" }}
+              >
+                {s.label}
+              </span>
+            </div>
+          ))}
+        </motion.div>
       </div>
+
+      {/* Scroll indicator — bottom right */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.5, duration: 0.8 }}
+        style={{
+          position: "absolute",
+          bottom: "2.5rem",
+          right: "2rem",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: "10px",
+        }}
+      >
+        <span
+          style={{
+            color: "#444",
+            fontSize: "9.5px",
+            fontWeight: 700,
+            letterSpacing: "0.25em",
+            writingMode: "vertical-rl",
+            transform: "rotate(180deg)",
+            textTransform: "uppercase",
+          }}
+        >
+          Scroll
+        </span>
+        <motion.div
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
+          style={{
+            width: "1px",
+            height: "55px",
+            background: "linear-gradient(to bottom, #444, transparent)",
+          }}
+        />
+      </motion.div>
     </section>
   );
 }

@@ -1,61 +1,150 @@
-import React from 'react';
-import AnimatedReveal from '../AnimatedReveal';
+import React from "react";
+import { StaggerContainer, StaggerItem } from "../AnimatedReveal";
+import AnimatedReveal from "../AnimatedReveal";
+
+const cases = [
+  {
+    title: "AED 6K to AED 80K in 90 Days",
+    category: "Paid Media · E-Commerce",
+    year: "2024",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
+    tag: "13× ROI",
+  },
+  {
+    title: "Local SEO for a Dental Clinic",
+    category: "Local SEO · Healthcare",
+    year: "2024",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
+    tag: "4× Patient Leads",
+  },
+  {
+    title: "Social Growth for Travel Brand",
+    category: "Social Media · Travel",
+    year: "2023",
+    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80",
+    tag: "200K+ Followers",
+  },
+  {
+    title: "Car Rental Lead Generation",
+    category: "PPC · Automotive",
+    year: "2023",
+    image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=900&q=80",
+    tag: "5× Booking Rate",
+  },
+];
 
 export default function CaseStudiesSection() {
-  const cases = [
-    {
-      title: "Scaling from AED 6,000 to AED 80,000 in 90 Days",
-      subtitle: "Hyper-optimizing paid touchpoints on a constrained budget to unlock 13x ROI.",
-      image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80"
-    },
-    {
-      title: "Dominating Local Search for Healthcare Clinics",
-      subtitle: "Executing technical Local SEO to flood a dental practice with high-intent patient inquiries.",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80"
-    }
-  ];
-
   return (
-    <section id="case-studies" className="py-32 bg-black relative">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        <div className="text-center mb-20 flex flex-col items-center">
+    <section
+      id="case-studies"
+      className="bg-black"
+      style={{ padding: "9rem 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+    >
+      <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 1.5rem" }}>
+
+        {/* Header */}
+        <div className="mb-20">
           <AnimatedReveal>
-            <div className="inline-block px-6 py-2 rounded-full border border-[#dfff00] text-[#dfff00] text-xs font-bold tracking-widest uppercase mb-6">
-              Proven Execution
-            </div>
+            <span
+              className="inline-block font-black text-[#EDF406] border border-[#EDF406]/35 uppercase mb-7"
+              style={{ fontSize: "11px", letterSpacing: "0.22em", padding: "0.45rem 1.2rem", borderRadius: "9999px" }}
+            >
+              Case Studies
+            </span>
           </AnimatedReveal>
-          <AnimatedReveal delay={0.1}>
-             <h2 className="text-6xl md:text-7xl lg:text-8xl font-black text-white tracking-tighter max-w-5xl mx-auto leading-[0.95] mt-4">
-               A Track Record of Unprecedented Scale.
-             </h2>
-          </AnimatedReveal>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <AnimatedReveal delay={0.1}>
+              <h2
+                className="font-black text-white"
+                style={{
+                  fontSize: "clamp(52px, 8vw, 110px)",
+                  letterSpacing: "-0.05em",
+                  lineHeight: 0.9,
+                  fontWeight: 600
+                }}
+              >
+                Selected <br />
+                <span style={{ color: "#EDF406", fontWeight: 600, fontSize: "40px" }}>
+                  Works.
+                </span>
+              </h2>
+            </AnimatedReveal>
+            <AnimatedReveal delay={0.2}>
+              <p
+                className="text-[#a3a3a3] max-w-xs font-medium"
+                style={{ fontSize: "17px", lineHeight: 1.65 }}
+              >
+                Real campaigns. Real numbers. A proven track record of exponential growth.
+              </p>
+            </AnimatedReveal>
+          </div>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 w-full">
-          {cases.map((item, i) => (
-             <AnimatedReveal key={i} delay={i * 0.1}>
-               <div className="group relative rounded-2xl overflow-hidden bg-[#111] aspect-[4/3] cursor-pointer">
-                  <img 
-                    src={item.image} 
-                    alt={item.title}
-                    className="w-full h-full object-cover grayscale opacity-50 group-hover:grayscale-0 group-hover:opacity-80 group-hover:scale-105 transition-all duration-700" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent opacity-90 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  
-                  <div className="absolute top-8 right-8 w-14 h-14 bg-[#dfff00] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transform translate-x-4 group-hover:translate-x-0 transition-all duration-500">
-                    <span className="text-black text-2xl font-bold -rotate-45">→</span>
-                  </div>
+        {/* 2×2 image grid */}
+        <StaggerContainer stagger={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {cases.map((item) => (
+            <StaggerItem key={item.title}>
+              <div
+                className="group relative overflow-hidden cursor-pointer"
+                style={{ borderRadius: "24px", aspectRatio: "16/10", background: "#0a0a0a" }}
+              >
+                {/* Image */}
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-95 group-hover:scale-105 transition-all duration-700"
+                />
 
-                  <div className="absolute bottom-10 left-10 right-10 translate-y-4 opacity-90 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                     <p className="text-[#dfff00] font-bold text-sm mb-4 uppercase tracking-widest opacity-80 group-hover:opacity-100">{item.subtitle}</p>
-                     <h4 className="text-white text-3xl md:text-4xl lg:text-5xl font-black leading-tight tracking-tight">{item.title}</h4>
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent" />
+
+                {/* ROI Tag */}
+                <div
+                  className="absolute top-6 left-6 font-black text-black bg-[#EDF406]"
+                  style={{ fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", padding: "0.35rem 0.9rem", borderRadius: "9999px" }}
+                >
+                  {item.tag}
+                </div>
+
+                {/* Arrow */}
+                <div
+                  className="absolute top-6 right-6 flex items-center justify-center text-black bg-[#EDF406] font-black opacity-0 group-hover:opacity-100 -translate-x-3 group-hover:translate-x-0 transition-all duration-400"
+                  style={{ width: "48px", height: "48px", borderRadius: "50%", fontSize: "20px" }}
+                >
+                  <span style={{ transform: "rotate(-45deg)", display: "inline-block" }}>→</span>
+                </div>
+
+                {/* Text */}
+                <div className="absolute bottom-8 left-8 right-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-400">
+                  <div
+                    className="font-black text-[#EDF406] uppercase mb-3"
+                    style={{ fontSize: "10px", letterSpacing: "0.2em", opacity: 0.8 }}
+                  >
+                    {item.category} · {item.year}
                   </div>
-               </div>
-             </AnimatedReveal>
+                  <h4
+                    className="font-black text-white"
+                    style={{ fontSize: "clamp(20px, 2.5vw, 30px)", letterSpacing: "-0.04em", lineHeight: 1.15 }}
+                  >
+                    {item.title}
+                  </h4>
+                </div>
+              </div>
+            </StaggerItem>
           ))}
-        </div>
+        </StaggerContainer>
 
+        {/* CTA */}
+        <AnimatedReveal delay={0.3}>
+          <div className="text-center mt-14">
+            <button
+              className="font-black text-white border border-white/20 hover:border-[#EDF406] hover:text-[#EDF406] transition-all duration-300"
+              style={{ fontSize: "13px", letterSpacing: "0.12em", textTransform: "uppercase", padding: "1rem 2.4rem", borderRadius: "9999px" }}
+            >
+              View All Case Studies
+            </button>
+          </div>
+        </AnimatedReveal>
       </div>
     </section>
   );

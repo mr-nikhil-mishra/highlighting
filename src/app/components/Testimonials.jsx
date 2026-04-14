@@ -124,7 +124,7 @@ export function Testimonials() {
               </div>
 
               <div className="absolute top-8 right-10 pointer-events-none select-none"
-                style={{ fontFamily: "serif", fontSize: "8rem", color: "rgba(var(--brand-neon-rgb),0.06)", lineHeight: 1, fontWeight: 900 }}>
+                style={{ fontFamily: "serif", fontSize: "8rem", color: "rgba(var(--brand-neon-rgb),0.06)", lineHeight: 1, fontWeight: 600 }}>
                 "
               </div>
             </motion.div>

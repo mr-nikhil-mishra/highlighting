@@ -1,139 +1,155 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
+import { SITE_CONFIG } from "../../config/site.config";
+
+const EASE = [0.16, 1, 0.3, 1];
+
+const NAV_LINKS = [
+  { label: "Home", href: "#home" },
+  { label: "About Us", href: "#about" },
+  { label: "Services", href: "#services" },
+  { label: "Case Studies", href: "#case-studies" },
+  { label: "FAQs", href: "#faq" },
+  { label: "Contact Us", href: "#contact" },
+];
+
+function scrollTo(id) {
+  document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+}
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    const onScroll = () => setScrolled(window.scrollY > 30);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const navLinks = [
-    { label: "Home", path: "#home" },
-    { label: "About Us", path: "#about" },
-    { label: "Services", path: "#services" },
-    { label: "Case Studies", path: "#case-studies" },
-    { label: "FAQs", path: "#faq" },
-  ];
-
-  const scrollToSection = (id) => {
-    setMobileOpen(false);
-    const element = document.querySelector(id);
-    if(element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
+  // Lock body scroll when mobile menu open
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [mobileOpen]);
 
   return (
     <>
       <motion.nav
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-        className="fixed top-0 w-full z-50 transition-all duration-300"
+        initial={{ y: -90, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.9, ease: EASE }}
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
         style={{
           background: scrolled ? "rgba(0, 0, 0, 0.95)" : "transparent",
-          backdropFilter: scrolled ? "blur(10px)" : "none",
-          borderBottom: scrolled ? `1px solid rgba(255,255,255,0.05)` : "1px solid transparent",
-          padding: scrolled ? "1rem 0" : "1.5rem 0",
+          backdropFilter: scrolled ? "blur(20px)" : "none",
+          WebkitBackdropFilter: scrolled ? "blur(20px)" : "none",
+          borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
+          padding: scrolled ? "0.9rem 0" : "1.5rem 0",
         }}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-          
+        <div
+          className="flex items-center justify-between"
+          style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 1.5rem" }}
+        >
           {/* Logo */}
-          <div 
-            className="flex flex-col cursor-pointer group"
-            onClick={() => scrollToSection('#home')}
+          <button
+            onClick={() => { setMobileOpen(false); scrollTo("#home"); }}
+            style={{ background: "none", border: "none", cursor: "pointer", padding: 0, lineHeight: 0 }}
+            aria-label="Go to top"
           >
-            <span className="text-white text-2xl font-black tracking-[-0.04em]">
-              MediaPulse<span className="text-[#dfff00]">360</span>
-            </span>
-          </div>
+            <img
+              src="/logo.svg"
+              alt="HIGHLIGHT Marketing Management"
+              style={{
+                height: scrolled ? "34px" : "40px",
+                width: "auto",
+                filter: "brightness(0) invert(1)",
+                transition: "height 0.4s ease",
+              }}
+            />
+          </button>
 
           {/* Desktop Nav */}
-          <div className="hidden md:flex items-center gap-8">
-            <div className="flex items-center gap-8">
-              {navLinks.map((link) => (
-                <button
-                  key={link.path}
-                  onClick={() => scrollToSection(link.path)}
-                  className="relative text-white hover:text-[#dfff00] transition-colors duration-300 group text-sm font-bold tracking-wide"
-                >
-                  {link.label}
-                  <span 
-                    className="absolute -bottom-1 left-0 w-full h-[2px] rounded-full transition-transform duration-300 scale-x-0 group-hover:scale-x-100"
-                    style={{ background: "#dfff00", transformOrigin: "left" }}
-                  />
-                </button>
-              ))}
-            </div>
-
-            <div className="flex items-center">
+          <div className="hidden lg:flex items-center gap-9">
+            {NAV_LINKS.map((link) => (
               <button
-                onClick={() => scrollToSection('#contact')}
-                className="ml-4 px-8 py-3.5 overflow-hidden group relative border border-[#dfff00] text-[#dfff00] text-sm font-bold tracking-wider uppercase rounded-sm"
+                key={link.href}
+                onClick={() => scrollTo(link.href)}
+                className="relative group text-white/75 hover:text-white transition-colors duration-200 font-semibold"
+                style={{ fontSize: "14px", letterSpacing: "0.02em" }}
               >
-                <span className="relative z-10 group-hover:text-black transition-colors duration-300">Contact Us</span>
-                <div className="absolute inset-0 bg-[#dfff00] scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left z-0"></div>
+                {link.label}
+                <span className="absolute -bottom-0.5 left-0 w-0 h-[1.5px] bg-[#EDF406] group-hover:w-full transition-all duration-300 rounded-full" />
               </button>
-            </div>
+            ))}
+
+            <button
+              onClick={() => scrollTo("#contact")}
+              className="ml-2 font-black text-black bg-[#EDF406] hover:bg-white transition-all duration-300"
+              style={{
+                fontSize: "13px",
+                letterSpacing: "0.1em",
+                textTransform: "uppercase",
+                padding: "0.7rem 1.6rem",
+                borderRadius: "9999px",
+                boxShadow: "0 0 20px rgba(237,244,6,0.15)",
+              }}
+            >
+              {SITE_CONFIG.cta.primary}
+            </button>
           </div>
 
           {/* Mobile Toggle */}
-          <div className="md:hidden flex items-center">
-            <button
-              onClick={() => setMobileOpen(!mobileOpen)}
-              className="text-white hover:text-[#dfff00] transition-colors"
-            >
-              {mobileOpen ? <X size={28} /> : <Menu size={28} />}
-            </button>
-          </div>
+          <button
+            className="lg:hidden text-white hover:text-[#EDF406] transition-colors duration-200"
+            onClick={() => setMobileOpen((p) => !p)}
+            aria-label="Toggle menu"
+          >
+            {mobileOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
+          </button>
         </div>
       </motion.nav>
 
-      {/* Mobile Menu Overlay */}
+      {/* Mobile Full-Screen Menu */}
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, x: '100%' }}
+            initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ duration: 0.4, ease: [0.25, 0.25, 0, 1] }}
-            className="fixed inset-0 z-40 bg-black flex flex-col pt-24 px-8 pb-8"
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.55, ease: EASE }}
+            className="fixed inset-0 z-40 bg-black flex flex-col px-8 pt-28 pb-12"
           >
-            <div className="flex flex-col gap-6 mt-8 flex-1">
-              {navLinks.map((link, i) => (
+            <nav className="flex flex-col gap-6 flex-1">
+              {NAV_LINKS.map((link, i) => (
                 <motion.button
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.1 + 0.2 }}
-                  key={link.path}
-                  onClick={() => scrollToSection(link.path)}
-                  className="text-left text-white hover:text-[#dfff00] transition-colors text-4xl font-black tracking-tighter"
+                  key={link.href}
+                  initial={{ opacity: 0, x: 30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.07 + 0.1, duration: 0.6, ease: EASE }}
+                  onClick={() => { setMobileOpen(false); scrollTo(link.href); }}
+                  className="text-left text-white hover:text-[#EDF406] font-black transition-colors duration-200"
+                  style={{ fontSize: "clamp(30px, 8vw, 44px)", letterSpacing: "-0.04em" }}
                 >
                   {link.label}
                 </motion.button>
               ))}
-            </div>
+            </nav>
 
-            <motion.div 
-               initial={{ opacity: 0 }}
-               animate={{ opacity: 1 }}
-               transition={{ delay: 0.6 }}
-               className="mt-auto"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 0.6, ease: EASE }}
             >
               <button
-                onClick={() => scrollToSection('#contact')}
-                className="w-full py-4 text-black text-center font-bold text-lg"
-                style={{ background: "#dfff00", borderRadius: "2px" }}
+                onClick={() => { setMobileOpen(false); scrollTo("#contact"); }}
+                className="w-full py-5 bg-[#EDF406] text-black font-black uppercase tracking-widest hover:bg-white transition-colors duration-300"
+                style={{ fontSize: "15px", borderRadius: "9999px" }}
               >
-                Contact Us
+                {SITE_CONFIG.cta.primary}
               </button>
             </motion.div>
           </motion.div>

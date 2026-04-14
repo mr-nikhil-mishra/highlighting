@@ -91,7 +91,7 @@ export function Footer() {
                 }}
               >
                 HIGHLIGHT&nbsp;
-                <span style={{ color: "var(--brand-neon)" }}>Marketing</span>
+                <span style={{ color: "var(--brand-neon)" }}>MARKETING</span>
               </span>
             </div>
             <p

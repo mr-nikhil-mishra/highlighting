@@ -1,42 +1,76 @@
-import React from 'react';
-import { motion } from 'motion/react';
+import React from "react";
+import { motion } from "motion/react";
+
+const words = [
+  "Digital Marketing",
+  "Advertising",
+  "SEO",
+  "Social Media",
+  "Content",
+  "Paid Media",
+  "Web Design",
+  "Local SEO",
+];
+
+// Double for seamless loop
+const items = [...words, ...words, ...words, ...words];
 
 export default function FooterMarquee() {
-  const words = ["MARKETING", "SEO", "WEBSITE DESIGN", "GOOGLE ADS", "SOCIAL MEDIA", "VIDEO EDITING"];
-  
   return (
-    <div className="relative py-24 bg-black overflow-hidden border-t border-[#1a1a1a]">
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent z-10 pointer-events-none"></div>
-      
-      <div className="flex whitespace-nowrap overflow-hidden">
+    <div
+      className="overflow-hidden"
+      style={{
+        background: "#050505",
+        borderTop: "1px solid rgba(255,255,255,0.06)",
+        borderBottom: "1px solid rgba(255,255,255,0.06)",
+        padding: "1.2rem 0",
+      }}
+    >
+      <div className="relative flex">
         <motion.div
+          className="flex items-center whitespace-nowrap flex-shrink-0"
           animate={{ x: ["0%", "-50%"] }}
-          transition={{ duration: 25, ease: "linear", repeat: Infinity }}
-          className="flex whitespace-nowrap items-center"
+          transition={{ duration: 30, ease: "linear", repeat: Infinity }}
         >
-          {/* Double the words to create seamless loop */}
-          {[...words, ...words, ...words, ...words].map((word, i) => (
-            <div key={i} className="flex items-center mx-8">
-              <span 
-                className="text-6xl md:text-8xl font-black text-transparent px-4 tracking-tighter"
-                style={{ 
-                  WebkitTextStroke: "1px rgba(255,255,255,0.2)",
+          {items.map((word, i) => (
+            <span
+              key={i}
+              className="inline-flex items-center"
+              style={{ padding: "0 0.6rem" }}
+            >
+              <span
+                className="font-black uppercase"
+                style={{
+                  fontSize: "clamp(36px, 5vw, 64px)",
+                  letterSpacing: "-0.03em",
+                  lineHeight: 1,
+                  /* Alternate: even = outlined, odd = solid white */
+                  ...(i % 2 === 0
+                    ? {
+                        color: "transparent",
+                        WebkitTextStroke: "1.5px rgba(255,255,255,0.25)",
+                      }
+                    : {
+                        color: "#ffffff",
+                        WebkitTextStroke: "0px transparent",
+                      }),
                 }}
               >
                 {word}
               </span>
-              <span className="text-[#dfff00] text-4xl">✽</span>
-            </div>
+              <span
+                style={{
+                  fontSize: "10px",
+                  color: "rgba(255,255,255,0.2)",
+                  margin: "0 0.8rem",
+                  lineHeight: 1,
+                }}
+              >
+                ◆
+              </span>
+            </span>
           ))}
         </motion.div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto px-6 mt-16 flex flex-col md:flex-row items-center justify-between border-t border-[#262626] pt-8 text-gray-500 font-medium">
-        <p>© 2026 Digital By Zia. All Rights Reserved.</p>
-        <div className="flex gap-6 mt-4 md:mt-0">
-          <a href="#" className="hover:text-[#dfff00] transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-[#dfff00] transition-colors">Terms of Service</a>
-        </div>
       </div>
     </div>
   );

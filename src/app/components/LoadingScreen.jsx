@@ -1,4 +1,4 @@
-﻿import { motion, AnimatePresence } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { useEffect, useState } from "react";
 
 export function LoadingScreen({ onComplete }) {
@@ -28,7 +28,7 @@ export function LoadingScreen({ onComplete }) {
       {/* Glow orb */}
       <div
         className="absolute w-96 h-96 rounded-full opacity-20 blur-3xl"
-        style={{ background: "radial-gradient(circle, var(--brand-neon), transparent)" }}
+        style={{ background: "radial-gradient(circle, #EDF406, transparent)" }}
       />
 
       {/* Logo */}
@@ -38,33 +38,18 @@ export function LoadingScreen({ onComplete }) {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative z-10 flex flex-col items-center gap-8"
       >
-        <div className="flex items-center gap-3">
-          <motion.div
-            initial={{ scale: 0, rotate: -180 }}
-            animate={{ scale: 1, rotate: 0 }}
-            transition={{ duration: 0.8, ease: "backOut" }}
-            className="w-12 h-12 rounded-xl flex items-center justify-center"
-            style={{ background: "linear-gradient(135deg, var(--brand-neon), var(--brand-dark))" }}
-          >
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <path d="M4 20L14 4L24 20H4Z" fill="#050505" />
-            </svg>
-          </motion.div>
-          <motion.span
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+        <motion.img
+            src="/logo.svg"
+            alt="HIGHLIGHT Marketing Management"
+            initial={{ opacity: 0, scale: 0.85 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.7, ease: "easeOut" }}
             style={{
-              fontFamily: "'Space Grotesk', sans-serif",
-              color: "#fff",
-              fontSize: "1.5rem",
-              fontWeight: 700,
-              letterSpacing: "-0.02em",
+              height: "56px",
+              width: "auto",
+              filter: "brightness(0) invert(1)",
             }}
-          >
-            HIGHLIGHT&nbsp;<span style={{ color: "var(--brand-neon)" }}>Marketing</span>
-          </motion.span>
-        </div>
+          />
 
         {/* Progress bar */}
         <div
@@ -74,9 +59,9 @@ export function LoadingScreen({ onComplete }) {
           <motion.div
             className="h-full rounded-full"
             style={{
-              background: "linear-gradient(90deg, var(--brand-neon), var(--brand-dark))",
+              background: "linear-gradient(90deg, transparent, #EDF406)",
               width: `${progress}%`,
-              boxShadow: "0 0 12px var(--brand-neon)",
+              boxShadow: "0 0 12px #EDF406",
             }}
           />
         </div>

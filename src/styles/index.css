@@ -1,57 +1,67 @@
+/* ============================================================
+   Global styles — digitalbyzia.com design system
+   ============================================================ */
+
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap');
 @import './fonts.css';
 @import './tailwind.css';
 @import './theme.css';
 
+/* ── Base ── */
 html {
   scroll-behavior: smooth;
   background: #000000;
 }
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 body {
   background: #000000;
   color: #ffffff;
-  overflow-x: hidden;
   font-family: 'Outfit', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+  line-height: 1.6;
 }
 
-:root {
-  --brand-neon: #dfff00;
-  --brand-neon-rgb: 223, 255, 0;
-  --brand-dark: #b8e600;
-  --brand-sec: #00ff88;
-  --brand-sec-rgb: 0, 255, 136;
-}
+/* ── Custom scrollbar ── */
+::-webkit-scrollbar        { width: 4px; }
+::-webkit-scrollbar-track  { background: #080808; }
+::-webkit-scrollbar-thumb  { background: rgba(237,244,6,0.22); border-radius: 2px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(237,244,6,0.45); }
 
-
-
-* {
-  box-sizing: border-box;
-}
-
-/* Custom scrollbar - dark */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: #0a0a0a;
-}
-::-webkit-scrollbar-thumb {
-  background: rgba(223, 255, 0, 0.3);
-  border-radius: 3px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(223, 255, 0, 0.5);
-}
-
-/* Selection color */
+/* ── Selection ── */
 ::selection {
-  background: rgba(223, 255, 0, 0.25);
+  background: rgba(237,244,6,0.2);
   color: #000000;
 }
 
-/* Input/select styling for theme */
+/* ── Images ── */
+img { display: block; max-width: 100%; }
+
+/* ── Buttons ── */
+button { font-family: inherit; cursor: pointer; }
+
+/* ── Inputs ── */
+input, textarea, select { font-family: inherit; }
 input::placeholder,
-textarea::placeholder {
-  opacity: 0.5;
+textarea::placeholder { color: rgba(255,255,255,0.25); }
+
+/* ── Root tokens ── */
+:root {
+  --accent: #EDF406;
+  --accent-rgb: 237, 244, 6;
+  --bg: #000000;
+  --surface: #050505;
+  --border: rgba(255,255,255,0.08);
+  --text-primary: #ffffff;
+  --text-muted: #a3a3a3;
+  --text-dim: #444444;
 }

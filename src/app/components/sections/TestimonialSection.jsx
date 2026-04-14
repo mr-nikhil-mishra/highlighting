@@ -1,62 +1,125 @@
-import React, { useState } from 'react';
-import AnimatedReveal from '../AnimatedReveal';
+import React from "react";
+import { StaggerContainer, StaggerItem } from "../AnimatedReveal";
+import AnimatedReveal from "../AnimatedReveal";
+
+const testimonials = [
+  {
+    name: "Ahmed Al-Rashid",
+    role: "CEO, TechStart Dubai",
+    initial: "A",
+    stars: 5,
+    quote:
+      "HIGHLIGHT Marketing completely transformed our digital presence. Our organic traffic tripled in 4 months and our paid campaigns are delivering a consistent 8× ROAS. Outstanding work.",
+  },
+  {
+    name: "Sarah Williams",
+    role: "Founder, Bloom Retail",
+    initial: "S",
+    stars: 5,
+    quote:
+      "The email marketing strategy they built for us generated more revenue in a single month than we'd seen in the prior quarter. Exceptional insight and flawless execution.",
+  },
+  {
+    name: "Raj Patel",
+    role: "Marketing Director, Nexus Media",
+    initial: "R",
+    stars: 5,
+    quote:
+      "From seamless onboarding to weekly performance reviews, working with the HIGHLIGHT Marketing team is a genuinely world-class experience. The results speak for themselves.",
+  },
+];
 
 export default function TestimonialSection() {
-  const testimonials = [
-    {
-      quote: "Very good WordPress designer. The website looks much more professional now compared to our old one.",
-      author: "Adnan Bin Ali",
-      role: "Client"
-    },
-    {
-      quote: "He transformed our outdated website into a modern and user-friendly masterpiece.",
-      author: "Hashmath",
-      role: "Client"
-    }
-  ];
-
-  const [active, setActive] = useState(0);
-
   return (
-    <section className="py-24 bg-[#050505] relative overflow-hidden">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#dfff00]/5 rounded-full blur-[120px] pointer-events-none"></div>
-      
-      <div className="max-w-4xl mx-auto px-6 relative z-10 text-center">
-        <AnimatedReveal>
-           <h2 className="text-[#dfff00] text-sm font-bold tracking-widest uppercase mb-12 border border-[#dfff00] inline-block px-6 py-2 rounded-full">
-             Client Satisfaction
-           </h2>
-        </AnimatedReveal>
+    <section
+      className="bg-black"
+      style={{ padding: "9rem 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+    >
+      <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 1.5rem" }}>
 
-        <AnimatedReveal delay={0.2}>
-          <div className="relative pt-12 pb-8">
-            <span className="absolute top-0 left-1/2 -translate-x-1/2 text-[120px] leading-none font-serif text-[#1a1a1a] select-none">"</span>
-            <p className="text-2xl md:text-4xl text-white font-bold leading-relaxed tracking-wide relative z-10">
-              {testimonials[active].quote}
-            </p>
-          </div>
-        </AnimatedReveal>
+        {/* Header */}
+        <div className="mb-20">
+          <AnimatedReveal>
+            <span
+              className="inline-block font-black text-[#EDF406] border border-[#EDF406]/35 uppercase mb-7"
+              style={{ fontSize: "11px", letterSpacing: "0.22em", padding: "0.45rem 1.2rem", borderRadius: "9999px" }}
+            >
+              Testimonials
+            </span>
+          </AnimatedReveal>
+          <AnimatedReveal delay={0.1}>
+            <h2
+              className="font-black text-white"
+              style={{ fontSize: "clamp(52px, 8vw, 110px)", letterSpacing: "-0.05em", lineHeight: 0.9,fontWeight: 600 }}
+            >
+              What Clients <br />
+              <span style={{ color: "#EDF406", fontWeight: 600, fontSize: "40px" }}>Say.</span>
+            </h2>
+          </AnimatedReveal>
+        </div>
 
-        <AnimatedReveal delay={0.4}>
-          <div className="flex flex-col items-center">
-            <div className="w-1 h-12 bg-[#dfff00] mb-6"></div>
-            <h4 className="text-2xl font-black text-white">{testimonials[active].author}</h4>
-            <p className="text-gray-500 uppercase tracking-widest text-sm font-bold mt-2">{testimonials[active].role}</p>
-          </div>
-        </AnimatedReveal>
+        {/* Cards */}
+        <StaggerContainer stagger={0.12} className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {testimonials.map((t) => (
+            <StaggerItem key={t.name}>
+              <div
+                className="group flex flex-col gap-6 h-full transition-all duration-500"
+                style={{
+                  background: "rgba(255,255,255,0.02)",
+                  border: "1px solid rgba(255,255,255,0.08)",
+                  borderRadius: "24px",
+                  padding: "2.5rem 2.25rem",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.border = "1px solid rgba(237,244,6,0.3)";
+                  e.currentTarget.style.background = "rgba(255,255,255,0.04)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.border = "1px solid rgba(255,255,255,0.08)";
+                  e.currentTarget.style.background = "rgba(255,255,255,0.02)";
+                }}
+              >
+                {/* Stars */}
+                <div className="flex gap-1">
+                  {[...Array(t.stars)].map((_, i) => (
+                    <span key={i} className="text-[#EDF406]" style={{ fontSize: "18px" }}>★</span>
+                  ))}
+                </div>
 
-        <AnimatedReveal delay={0.6}>
-          <div className="flex justify-center gap-4 mt-12">
-            {testimonials.map((_, i) => (
-               <button 
-                 key={i}
-                 onClick={() => setActive(i)}
-                 className={`w-3 h-3 rounded-full transition-all duration-300 ${active === i ? 'bg-[#dfff00] scale-150' : 'bg-[#333] hover:bg-[#555]'}`}
-               />
-            ))}
-          </div>
-        </AnimatedReveal>
+                <p
+                  className="text-[#c5c5c5] flex-1"
+                  style={{ fontSize: "16px", lineHeight: 1.75 }}
+                >
+                  "{t.quote}"
+                </p>
 
+                {/* Author */}
+                <div
+                  className="flex items-center gap-4 pt-6"
+                  style={{ borderTop: "1px solid rgba(255,255,255,0.08)" }}
+                >
+                  <div
+                    className="flex-shrink-0 flex items-center justify-center font-black text-black bg-[#EDF406]"
+                    style={{ width: "48px", height: "48px", borderRadius: "50%", fontSize: "18px" }}
+                  >
+                    {t.initial}
+                  </div>
+                  <div>
+                    <div
+                      className="font-black text-white"
+                      style={{ fontSize: "15px", letterSpacing: "-0.02em" }}
+                    >
+                      {t.name}
+                    </div>
+                    <div className="text-[#555]" style={{ fontSize: "13px", marginTop: "2px" }}>
+                      {t.role}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
       </div>
     </section>
   );

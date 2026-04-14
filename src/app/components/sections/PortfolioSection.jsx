@@ -1,57 +1,106 @@
-import React from 'react';
-import AnimatedReveal from '../AnimatedReveal';
+import React from "react";
+import AnimatedReveal from "../AnimatedReveal";
+
+const portfolio = [
+  {
+    title: "E-commerce Store Redesign",
+    category: "Website Design",
+    year: "2024",
+    image: "https://images.unsplash.com/photo-1523474253046-8cd2748b5fd2?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "SaaS Landing Page",
+    category: "Web Development",
+    year: "2024",
+    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Brand Awareness Campaign",
+    category: "Digital Marketing",
+    year: "2023",
+    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Email Marketing Funnel",
+    category: "Email Marketing",
+    year: "2023",
+    image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=800&q=80",
+  },
+];
 
 export default function PortfolioSection() {
-  const categories = ["Social Media Designs", "Website Designing", "Google Ads", "Meta Ads", "SEO", "Content Writing"];
-  
   return (
-    <section id="portfolio" className="py-24 bg-[#050505] relative border-y border-[#1a1a1a]">
-      <div className="max-w-7xl mx-auto px-6">
-        
-        <div className="text-center mb-16 flex flex-col items-center">
+    <section id="portfolio" className="py-36 bg-black border-t border-white/5">
+      <div className="max-w-[1300px] mx-auto px-6">
+        {/* Header */}
+        <div className="mb-20">
           <AnimatedReveal>
-            <div className="inline-block px-6 py-2 rounded-full border border-[#dfff00] text-[#dfff00] text-sm font-bold tracking-widest uppercase mb-6">
-              MY WORKS
+            <div className="inline-block text-xs font-black tracking-[0.25em] text-[#EDF406] uppercase border border-[#EDF406]/30 px-5 py-2 rounded-full mb-8">
+              Portfolio
             </div>
           </AnimatedReveal>
-          <AnimatedReveal delay={0.1}>
-            <h2 className="text-4xl md:text-5xl font-black text-white tracking-[-0.02em] max-w-2xl mx-auto leading-tight">
-              Showcasing My Craft: A Portfolio of Creative Work and Expertise
-            </h2>
-          </AnimatedReveal>
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <AnimatedReveal delay={0.1}>
+              <h2
+                className="font-black tracking-tighter text-white leading-[0.92]"
+                style={{ fontSize: "clamp(48px, 7vw, 100px)", fontWeight: 600 }}
+              >
+                Selected <br />
+                <span className="text-[#EDF406]" style={{ fontWeight: 600, fontSize: "40px" }}>
+                  Works.
+                </span>
+              </h2>
+            </AnimatedReveal>
+            <AnimatedReveal delay={0.2}>
+              <p className="text-gray-400 text-lg max-w-sm leading-relaxed">
+                A curated selection of projects that showcase the impact of strategic design and marketing.
+              </p>
+            </AnimatedReveal>
+          </div>
         </div>
 
-        <AnimatedReveal delay={0.3} className="flex flex-wrap justify-center gap-4 mb-16">
-           {categories.map((cat, i) => (
-              <button 
-                key={i} 
-                className={`px-6 py-3 rounded-full text-sm font-bold transition-all duration-300 ${i === 0 ? 'bg-[#dfff00] text-black shadow-[0_0_20px_rgba(223,255,0,0.3)]' : 'bg-[#111] text-gray-400 hover:text-white border border-[#222] hover:border-[#444]'}`}
-              >
-                {cat}
-              </button>
-           ))}
-        </AnimatedReveal>
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {portfolio.map((item, i) => (
+            <AnimatedReveal key={item.title} delay={i * 0.1}>
+              <div className="group relative overflow-hidden rounded-3xl cursor-pointer aspect-[4/3] bg-[#0a0a0a]">
+                <img
+                  src={item.image}
+                  alt={item.title}
+                  className="w-full h-full object-cover opacity-75 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent" />
 
-        {/* Dummy Masonry Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {[1, 2, 3, 4, 5, 6].map((item, i) => (
-             <AnimatedReveal key={item} delay={i * 0.1}>
-               <div className="group relative rounded-2xl overflow-hidden bg-[#111] aspect-[4/3] cursor-pointer">
-                  <img 
-                    src={`https://images.unsplash.com/photo-${1550000000000 + i * 1000}?auto=format&fit=crop&w=600&q=80`} 
-                    alt={`Portfolio ${item}`}
-                    className="w-full h-full object-cover grayscale opacity-70 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700" 
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                  <div className="absolute bottom-6 left-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-300">
-                     <p className="text-[#dfff00] font-bold text-sm mb-1 uppercase tracking-wider">Showcase</p>
-                     <h4 className="text-white text-xl font-bold">Project Name {item}</h4>
+                {/* Arrow button */}
+                <div className="absolute top-6 right-6 w-14 h-14 rounded-full bg-[#EDF406] flex items-center justify-center text-black text-xl font-black opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-400">
+                  <span className="-rotate-45">→</span>
+                </div>
+
+                {/* Text overlay */}
+                <div className="absolute bottom-8 left-8 right-8">
+                  <div className="text-xs font-black tracking-[0.2em] text-[#EDF406] uppercase mb-3">
+                    {item.category} · {item.year}
                   </div>
-               </div>
-             </AnimatedReveal>
+                  <h4
+                    className="font-black text-white tracking-tight leading-tight translate-y-3 group-hover:translate-y-0 transition-transform duration-400"
+                    style={{ fontSize: "clamp(22px, 2.5vw, 34px)" }}
+                  >
+                    {item.title}
+                  </h4>
+                </div>
+              </div>
+            </AnimatedReveal>
           ))}
         </div>
 
+        {/* CTA */}
+        <AnimatedReveal delay={0.4}>
+          <div className="mt-16 text-center">
+            <button className="px-10 py-4 border border-white/20 text-white font-black text-sm uppercase tracking-widest rounded-full hover:border-[#EDF406] hover:text-[#EDF406] transition-all duration-300">
+              View All Projects
+            </button>
+          </div>
+        </AnimatedReveal>
       </div>
     </section>
   );
