@@ -1,4 +1,13 @@
-﻿import { useRef } from "react";
+/**
+ * @file ServicesPage.jsx
+ * @description Dedicated root page outlining the agency's primary offerings and workflow methodology.
+ * It imports the global `ServicesSection` array and builds a custom "How We Work" procedural 
+ * stagger-animated grid beneath it.
+ * 
+ * @module Pages/ServicesPage
+ */
+
+import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { useNavigate } from "react-router";
 import { ServicesSection } from "../components/ServicesSection";
@@ -7,6 +16,16 @@ import { useTheme } from "../contexts/ThemeContext";
 import { useLanguage } from "../contexts/LanguageContext";
 import { translations } from "../translations";
 
+/**
+ * Localized functional component defining a single "Step" inside the How We Work grid.
+ * Receives execution order via 'index' to calculate a mathematically staggered CSS entrance delay.
+ * 
+ * @param {object} props 
+ * @param {object} props.step - Translation data containing title, desc, and num
+ * @param {number} props.index - Used as a multiplier for Framer Motion animation delays
+ * @param {object} props.colors - Contextual deep theme payload for styling hooks
+ * @returns {JSX.Element} Extrusion-styled procedural tracking card
+ */
 function ProcessStep({ step, index, colors }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-60px" });
@@ -267,7 +286,7 @@ export function ServicesPage() {
         </div>
       </section>
 
-      <CTASection />
+      {/* <CTASection /> */}
     </>
   );
 }

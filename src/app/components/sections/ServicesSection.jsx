@@ -1,59 +1,11 @@
 import React from "react";
+import { useNavigate } from "react-router";
 import { StaggerContainer, StaggerItem } from "../AnimatedReveal";
 import AnimatedReveal from "../AnimatedReveal";
-
-const services = [
-  {
-    title: "Website Designing",
-    description: "Bespoke, high-converting web experiences built for performance and seamless UX.",
-    num: "01",
-    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    title: "SEO Services",
-    description: "Data-driven search engine optimization for sustainable organic traffic and top rankings.",
-    num: "02",
-    image: "https://images.unsplash.com/photo-1562577308-9e66f0c65ce5?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    title: "Local SEO",
-    description: "Dominate local search results and capture ready-to-buy customers in your market.",
-    num: "03",
-    image: "https://images.unsplash.com/photo-1573804633927-bfcbcd909acd?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    title: "Social Media Marketing",
-    description: "Platform-native campaigns that build communities and drive measurable engagement.",
-    num: "04",
-    image: "https://images.unsplash.com/photo-1611162617213-7d7a39e9b1d7?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    title: "Content Marketing",
-    description: "Authority-building content strategies that attract and convert your ideal audience.",
-    num: "05",
-    image: "https://images.unsplash.com/photo-1542435503-956c469947f6?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    title: "Paid Media Advertising",
-    description: "High-yield PPC campaigns engineered for maximum return across Google and Meta.",
-    num: "06",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    title: "Email Marketing",
-    description: "Automated email sequences that nurture leads and grow recurring revenue.",
-    num: "07",
-    image: "https://images.unsplash.com/photo-1596526131083-e8c633c948d2?auto=format&fit=crop&w=600&q=80",
-  },
-  {
-    title: "Programmatic Advertising",
-    description: "AI-powered media buying to reach your exact audience across premium networks.",
-    num: "08",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=80",
-  },
-];
+import { services } from "../../data/services";
 
 export default function ServicesSection() {
+  const navigate = useNavigate();
   return (
     <section
       id="services"
@@ -133,6 +85,7 @@ export default function ServicesSection() {
               <StaggerItem key={svc.title}>
                 <div
                   className="service-card group"
+                  onClick={() => navigate(`/services/${svc.slug}`)}
                   style={{
                     background: "rgba(255,255,255,0.02)",
                     border: "1px solid rgba(255,255,255,0.08)",

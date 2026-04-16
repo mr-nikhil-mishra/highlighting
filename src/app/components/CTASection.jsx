@@ -1,4 +1,4 @@
-﻿import { useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "motion/react";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { useNavigate } from "react-router";
@@ -59,8 +59,8 @@ export function CTASection() {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full mb-8"
-              style={{ background: "rgba(var(--brand-neon-rgb),0.1)", border: "1px solid rgba(var(--brand-neon-rgb),0.3)" }}
+              className="mx-auto flex items-center justify-center gap-2 px-4 py-2 rounded-full mb-8"
+              style={{ background: "rgba(var(--brand-neon-rgb),0.1)", border: "1px solid rgba(var(--brand-neon-rgb),0.3)", width: "fit-content", margin: "0 auto 2rem auto" }}
             >
               <Sparkles size={14} style={{ color: "var(--brand-neon)" }} />
               <span style={{ fontFamily: "'Space Grotesk', sans-serif", color: "var(--brand-neon)", fontSize: "0.75rem", fontWeight: 600, letterSpacing: "0.1em" }}>

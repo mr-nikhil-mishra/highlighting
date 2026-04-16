@@ -1,10 +1,23 @@
+/**
+ * @file Navbar.jsx
+ * @description The globally persistent navigation header.
+ * Handles both standard route routing (e.g., navigating to `/services`) and 
+ * "hash routing" (e.g., smoothly scrolling to `<section id="contact">` on the homepage).
+ * Features a dynamic responsive hamburger menu with Framer Motion transitions.
+ * 
+ * @module Components/Navbar
+ */
+
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Menu, X } from "lucide-react";
+import { useLocation, useNavigate } from "react-router";
 import { SITE_CONFIG } from "../../config/site.config";
 
+// Standardized easing curve for navigation transitions
 const EASE = [0.16, 1, 0.3, 1];
 
+// Master navigation dictionary mapping to homepage section ID anchors
 const NAV_LINKS = [
   { label: "Home", href: "#home" },
   { label: "About Us", href: "#about" },
@@ -14,22 +27,64 @@ const NAV_LINKS = [
   { label: "Contact Us", href: "#contact" },
 ];
 
+/**
+ * Utility to execute native smooth scrolling to a given DOM element ID.
+ * @param {string} id - The #anchor to scroll to.
+ */
 function scrollTo(id) {
   document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
 }
 
+/**
+ * Navbar functional component.
+ * 
+ * @returns {JSX.Element} Fluid contextual navigation bar (desktop & mobile).
+ */
 export function Navbar() {
+  // Tracks viewport scroll depth to trigger background-blur glassmorphism
   const [scrolled, setScrolled] = useState(false);
+  
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState("home");
+  
+  // Exposes currently loaded URL path (used to determine hash-routing strategy)
+  const location = useLocation();
+  const navigate = useNavigate();
 
+  /**
+   * Smart Navigation Handler
+   * If the user is ALREADY on the homepage ("/"), it fires a simple smooth scroll to the target.
+   * If the user is on a sub-page (e.g., `/services/web-dev`), it forces a hard redirect to "/" FIRST, 
+   * delays execution momentarily to allow DOM render, and then scrolls to the section.
+   * 
+   * @param {string} href - Target route or hash
+   * @param {boolean} isMobile - Whether to auto-close the hamburger menu post-click
+   */
+  const handleNavClick = (href, isMobile = false) => {
+    if (isMobile) setMobileOpen(false);
+    
+    if (location.pathname === "/") {
+      scrollTo(href);
+    } else {
+      navigate("/");
+      setTimeout(() => {
+        scrollTo(href);
+      }, 100);
+    }
+  };
+
+  /**
+   * Intersection-like listener attached to Window to toggle "scrolled" style variant.
+   */
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 30);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  // Lock body scroll when mobile menu open
+  /**
+   * UX Safeguard: Locks the background body from scrolling independently 
+   * when the mobile full-screen overlay is opened.
+   */
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
@@ -56,7 +111,7 @@ export function Navbar() {
         >
           {/* Logo */}
           <button
-            onClick={() => { setMobileOpen(false); scrollTo("#home"); }}
+            onClick={() => handleNavClick("#home", mobileOpen)}
             style={{ background: "none", border: "none", cursor: "pointer", padding: 0, lineHeight: 0 }}
             aria-label="Go to top"
           >
@@ -77,7 +132,7 @@ export function Navbar() {
             {NAV_LINKS.map((link) => (
               <button
                 key={link.href}
-                onClick={() => scrollTo(link.href)}
+                onClick={() => handleNavClick(link.href)}
                 className="relative group text-white/75 hover:text-white transition-colors duration-200 font-semibold"
                 style={{ fontSize: "14px", letterSpacing: "0.02em" }}
               >
@@ -87,7 +142,7 @@ export function Navbar() {
             ))}
 
             <button
-              onClick={() => scrollTo("#contact")}
+              onClick={() => handleNavClick("#contact")}
               className="ml-2 font-black text-black bg-[#EDF406] hover:bg-white transition-all duration-300"
               style={{
                 fontSize: "13px",
@@ -130,7 +185,7 @@ export function Navbar() {
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.07 + 0.1, duration: 0.6, ease: EASE }}
-                  onClick={() => { setMobileOpen(false); scrollTo(link.href); }}
+                  onClick={() => handleNavClick(link.href, true)}
                   className="text-left text-white hover:text-[#EDF406] font-black transition-colors duration-200"
                   style={{ fontSize: "clamp(30px, 8vw, 44px)", letterSpacing: "-0.04em" }}
                 >
@@ -145,7 +200,7 @@ export function Navbar() {
               transition={{ delay: 0.5, duration: 0.6, ease: EASE }}
             >
               <button
-                onClick={() => { setMobileOpen(false); scrollTo("#contact"); }}
+                onClick={() => handleNavClick("#contact", true)}
                 className="w-full py-5 bg-[#EDF406] text-black font-black uppercase tracking-widest hover:bg-white transition-colors duration-300"
                 style={{ fontSize: "15px", borderRadius: "9999px" }}
               >

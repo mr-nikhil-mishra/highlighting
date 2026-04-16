@@ -1,3 +1,12 @@
+/**
+ * @file translations/index.js
+ * @description Centralized linguistic payload for the application.
+ * All text rendered on the UI should strictly pull from this dictionary using 
+ * the LanguageContext to ensure the App remains scalable for future localized variants (e.g., Arabic).
+ * 
+ * @module Data/Translations
+ */
+
 export const translations = {
   en: {
     nav: {
@@ -56,6 +65,20 @@ export const translations = {
       privacy: "Privacy Policy",
       terms: "Terms of Service",
       rights: "HIGHLIGHT Marketing Management. All Rights Reserved. 2025"
+    },
+    cta: {
+      badge: "LET'S WORK TOGETHER",
+      titleMain: "READY TO",
+      titleAccent: "GROW",
+      titleEnd: "YOUR BUSINESS?",
+      subtitle: "Join the hundreds of businesses that trust us to scale their marketing and drive revenue.",
+      btn1: "Start a Project",
+      btn2: "Contact Us",
+      trust: [
+        { icon: "⭐", text: "5-Star Rated" },
+        { icon: "📈", text: "Data-Driven" },
+        { icon: "🛡️", text: "Results Guaranteed" }
+      ]
     },
     pages: {
       about: {
