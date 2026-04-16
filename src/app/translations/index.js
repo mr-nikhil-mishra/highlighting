@@ -36,7 +36,7 @@ export const translations = {
       ],
     },
     whyChooseUs: {
-      badge: "WHY HIGHLIGHT Marketing?",
+      badge: "WHY HIGHLIGHT Marketing Management?",
       titleMain: "THE RIGHT",
       titleAccent: "CHOICE",
       subtitle: "We blend creativity with proven tactics to boost visibility and drive action.",
@@ -55,7 +55,7 @@ export const translations = {
       legal: "Legal",
       privacy: "Privacy Policy",
       terms: "Terms of Service",
-      rights: "HIGHLIGHT Marketing. All Rights Reserved. 2025"
+      rights: "HIGHLIGHT Marketing Management. All Rights Reserved. 2025"
     },
     pages: {
       about: {

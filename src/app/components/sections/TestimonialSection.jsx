@@ -9,7 +9,7 @@ const testimonials = [
     initial: "A",
     stars: 5,
     quote:
-      "HIGHLIGHT Marketing completely transformed our digital presence. Our organic traffic tripled in 4 months and our paid campaigns are delivering a consistent 8× ROAS. Outstanding work.",
+      "HIGHLIGHT Marketing Management completely transformed our digital presence. Our organic traffic tripled in 4 months and our paid campaigns are delivering a consistent 8× ROAS. Outstanding work.",
   },
   {
     name: "Sarah Williams",
@@ -25,7 +25,7 @@ const testimonials = [
     initial: "R",
     stars: 5,
     quote:
-      "From seamless onboarding to weekly performance reviews, working with the HIGHLIGHT Marketing team is a genuinely world-class experience. The results speak for themselves.",
+      "From seamless onboarding to weekly performance reviews, working with the HIGHLIGHT Marketing Management team is a genuinely world-class experience. The results speak for themselves.",
   },
 ];
 

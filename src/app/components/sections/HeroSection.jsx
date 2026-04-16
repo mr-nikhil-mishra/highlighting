@@ -47,7 +47,7 @@ export default function HeroSection() {
               className="rounded-full bg-[#EDF406] animate-pulse"
               style={{ width: "6px", height: "6px", flexShrink: 0 }}
             />
-            Digital Marketing Agency · London, UK
+            Marketing management Company · Dubai, UAE
           </span>
         </motion.div>
 
@@ -67,7 +67,7 @@ export default function HeroSection() {
               paddingBottom:"10px"
             }}
           >
-            HIGHLIGHT Marketing
+            HIGHLIGHT Marketing Management
           </motion.h1>
         </div>
 

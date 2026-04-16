@@ -97,7 +97,7 @@ export default function ServicesSection() {
                 Here's What{" "}
                 <br />
                 <span style={{ color: "#EDF406", fontWeight: 600, fontSize: "40px" }}>
-                  We Do.
+                  We&nbsp;Do.
                 </span>
               </h2>
             </AnimatedReveal>

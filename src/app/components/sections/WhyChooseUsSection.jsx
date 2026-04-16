@@ -64,7 +64,7 @@ export default function WhyChooseUsSection() {
             </AnimatedReveal>
             <AnimatedReveal delay={0.2}>
               <p className="text-[#a3a3a3] max-w-xs font-medium" style={{ fontSize: "17px", lineHeight: 1.65 }}>
-                Seven reasons why ambitious brands choose HIGHLIGHT Marketing.
+                Seven reasons why ambitious brands choose HIGHLIGHT Marketing Management.
               </p>
             </AnimatedReveal>
           </div>

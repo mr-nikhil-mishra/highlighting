@@ -4,8 +4,8 @@
 
 export const SITE_CONFIG = {
   // Company identity
-  companyName: "HIGHLIGHT Marketing",
-  logo: "HIGHLIGHT Marketing",
+  companyName: "HIGHLIGHT Marketing Management",
+  logo: "HIGHLIGHT Marketing Management",
   tagline: "Digital Marketing Agency",
   location: "Dubai",
 

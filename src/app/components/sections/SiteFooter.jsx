@@ -51,7 +51,7 @@ export default function SiteFooter() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <img
-              src="/logo.svg"
+              src="/logo.png"
               alt="HIGHLIGHT Marketing Management"
               style={{
                 height: "44px",

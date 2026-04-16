@@ -39,7 +39,7 @@ export default function AboutMeSection() {
               />
               <img
                 src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80"
-                alt="About HIGHLIGHT Marketing"
+                alt="About HIGHLIGHT Marketing Management"
                 className="relative z-10 w-full object-cover transition-all duration-700"
                 style={{ aspectRatio: "3/4", borderRadius: "40px" }}
               />
@@ -64,7 +64,7 @@ export default function AboutMeSection() {
                 className="inline-block font-black text-[#EDF406] border border-[#EDF406]/35 uppercase"
                 style={{ fontSize: "11px", letterSpacing: "0.22em", padding: "0.45rem 1.2rem", borderRadius: "9999px" }}
               >
-                About HIGHLIGHT Marketing
+                About HIGHLIGHT Marketing Management
               </span>
             </AnimatedReveal>
 

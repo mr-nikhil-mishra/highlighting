@@ -69,7 +69,7 @@ export default function FAQSection() {
 
             <AnimatedReveal delay={0.2}>
               <p className="text-[#a3a3a3] mt-8 font-medium max-w-xs" style={{ fontSize: "17px", lineHeight: 1.65 }}>
-                Everything you need to know about working with HIGHLIGHT Marketing.
+                Everything you need to know about working with HIGHLIGHT Marketing Management.
               </p>
             </AnimatedReveal>
 

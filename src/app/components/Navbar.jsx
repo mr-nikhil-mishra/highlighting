@@ -61,7 +61,7 @@ export function Navbar() {
             aria-label="Go to top"
           >
             <img
-              src="/logo.svg"
+              src="/logo.png"
               alt="HIGHLIGHT Marketing Management"
               style={{
                 height: scrolled ? "34px" : "40px",

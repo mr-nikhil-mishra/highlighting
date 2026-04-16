@@ -39,7 +39,7 @@ export function LoadingScreen({ onComplete }) {
         className="relative z-10 flex flex-col items-center gap-8"
       >
         <motion.img
-            src="/logo.svg"
+            src="/logo.png"
             alt="HIGHLIGHT Marketing Management"
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
