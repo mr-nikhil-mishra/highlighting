@@ -51,8 +51,8 @@ export const services = [
     title: "Printing & Packaging",
     description: "Print. Pack. Impress! Quality printing and structural packaging that speaks volumes.",
     num: "03",
-    heroImage: "https://images.unsplash.com/photo-1587654780228-6a58a7ab2912?auto=format&fit=crop&w=1920&q=80",
-    image: "https://images.unsplash.com/photo-1587654780228-6a58a7ab2912?auto=format&fit=crop&w=800&q=80",
+    heroImage: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=1920&q=80",
+    image: "https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&w=800&q=80",
     content: [
       "Physical touchpoints remain overwhelmingly powerful in building brand trust. Our premium printing and packaging solutions ensure that every brochure, business card, and product box you hand a customer screams exceptional quality.",
       "We fuse structural integrity with stunning aesthetics to create packaging that not only protects your product but drastically elevates the unboxing experience. Superior packaging directly influences perceived value and drives repeat purchasing.",
