@@ -274,16 +274,7 @@ export default function CaseStudiesSection() {
                               <img
                                 src={item.image}
                                 alt={item.title}
-                                className="w-full h-auto transform transition-transform ease-in-out block"
-                                style={{
-                                  transitionDuration: "4s",
-                                }}
-                                onMouseEnter={(e) => {
-                                  e.currentTarget.style.transform = "translateY(calc(450px - 100%))";
-                                }}
-                                onMouseLeave={(e) => {
-                                  e.currentTarget.style.transform = "translateY(0)";
-                                }}
+                                className="w-full h-auto block transition-transform ease-in-out duration-[4000ms] group-hover:[transform:translateY(calc(450px-100%))]"
                               />
                             </div>
                             
