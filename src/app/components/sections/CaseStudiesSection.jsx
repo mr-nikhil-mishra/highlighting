@@ -8,110 +8,110 @@ const portfolioData = {
   "Social Media Designs": [
     {
       title: "Auto Detailing Specialist",
-      image: "../../public/social/car-workshop.webp",
+      image: "/social/car-workshop.webp",
     },
     {
       title: "Villa Renovation",
-      image: "../../public/social/villa.webp",
+      image: "/social/villa.webp",
     },
     {
       title: "Marketing Made Easy",
-      image: "../../public/social/marketing.webp",
+      image: "/social/marketing.webp",
     },
     {
       title: "Hustlers Promo",
-      image: "../../public/social/hustlers.webp",
+      image: "/social/hustlers.webp",
     },
     {
       title: "Exclusive Events",
-      image: "../../public/social/exclusive.webp",
+      image: "/social/exclusive.webp",
     },
   ],
   "Website Designing": [
     {
       title: "",
-      image: "../../public/website/Bharat-Bistro-scaled.webp",
+      image: "/website/Bharat-Bistro-scaled.webp",
     },
 
     {
       title: "",
-      image: "../../public/website/cars.webp",
+      image: "/website/cars.webp",
     },
     {
       title: "",
-      image: "../../public/website/coworking.webp",
+      image: "/website/coworking.webp",
     },
     {
       title: "",
-      image: "../../public/website/Czarinterior.webp",
+      image: "/website/Czarinterior.webp",
     },
     {
       title: "",
-      image: "../../public/website/Hotline-768x3451.webp",
+      image: "/website/Hotline-768x3451.webp",
     },
     {
       title: "",
-      image: "../../public/website/Polycraft-scaled.webp",
+      image: "/website/Polycraft-scaled.webp",
     },
     {
       title: "",
-      image: "../../public/website/Rshairandsalon-768x4416.webp",
+      image: "/website/Rshairandsalon-768x4416.webp",
     },
     {
       title: "",
-      image: "../../public/website/Woodvision-scaled.webp",
+      image: "/website/Woodvision-scaled.webp",
     },
     {
       title: "",
-      image: "../../public/website/writeforus.webp",
+      image: "/website/writeforus.webp",
     },
 
   ],
   "Google Ads": [
     {
       title: "Google Ads Growth",
-      image: "../../public/ads/g1.webp",
+      image: "/ads/g1.webp",
     },
     {
       title: "Google Ads Performance",
-      image: "../../public/ads/g2.webp",
+      image: "/ads/g2.webp",
     },
   ],
   "Meta Ads": [
     {
       title: "Meta Campaigns Setup",
-      image: "../../public/ads/m1.webp",
+      image: "/ads/m1.webp",
     },
     {
       title: "Meta Conversion Details",
-      image: "../../public/ads/m2.webp",
+      image: "/ads/m2.webp",
     },
   ],
   "SEO Content Writing": [
     {
       title: "",
-      image: "../../public/seo/seo1.webp",
+      image: "/seo/seo1.webp",
     },
     {
       title: "",
-      image: "../../public/seo/seo2.webp",
+      image: "/seo/seo2.webp",
     },
     {
       title: "",
-      image: "../../public/seo/seo3.webp",
+      image: "/seo/seo3.webp",
     },
     {
       title: "",
-      image: "../../public/seo/seo4.webp",
+      image: "/seo/seo4.webp",
     },
     {
       title: "",
-      image: "../../public/seo/seo5.webp",
+      image: "/seo/seo5.webp",
     },
 
     {
       title: "",
-      image: "../../public/seo/seo6.webp",
+      image: "/seo/seo6.webp",
     },
   ],
 };
