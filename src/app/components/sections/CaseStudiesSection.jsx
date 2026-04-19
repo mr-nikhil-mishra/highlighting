@@ -2,46 +2,200 @@ import React from "react";
 import { StaggerContainer, StaggerItem } from "../AnimatedReveal";
 import AnimatedReveal from "../AnimatedReveal";
 
-const cases = [
-  {
-    title: "AED 6K to AED 80K in 90 Days",
-    category: "Paid Media · E-Commerce",
-    year: "2024",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=80",
-    tag: "13× ROI",
-  },
-  {
-    title: "Local SEO for a Dental Clinic",
-    category: "Local SEO · Healthcare",
-    year: "2024",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=900&q=80",
-    tag: "4× Patient Leads",
-  },
-  {
-    title: "Social Growth for Travel Brand",
-    category: "Social Media · Travel",
-    year: "2023",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=900&q=80",
-    tag: "200K+ Followers",
-  },
-  {
-    title: "Car Rental Lead Generation",
-    category: "PPC · Automotive",
-    year: "2023",
-    image: "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?auto=format&fit=crop&w=900&q=80",
-    tag: "5× Booking Rate",
-  },
-];
+const tabs = ["Social Media Designs", "Website Designing", "Google / Meta Ads", "SEO Content Writing"];
+
+const portfolioData = {
+  "Social Media Designs": [
+    {
+      title: "Auto Detailing Specialist",
+      image: "../../public/social/car-workshop.webp",
+    },
+    {
+      title: "Villa Renovation",
+      image: "../../public/social/villa.webp",
+    },
+    {
+      title: "Marketing Made Easy",
+      image: "../../public/social/marketing.webp",
+    },
+    {
+      title: "Hustlers Promo",
+      image: "../../public/social/hustlers.webp",
+    },
+    {
+      title: "Exclusive Events",
+      image: "../../public/social/exclusive.webp",
+    },
+  ],
+  "Website Designing": [
+    {
+      title: "",
+      image: "../../public/website/Bharat-Bistro-scaled.webp",
+    },
+
+    {
+      title: "",
+      image: "../../public/website/cars.webp",
+    },
+    {
+      title: "",
+      image: "../../public/website/coworking.webp",
+    },
+    {
+      title: "",
+      image: "../../public/website/Czarinterior.webp",
+    },
+    {
+      title: "",
+      image: "../../public/website/Hotline-768x3451.webp",
+    },
+    {
+      title: "",
+      image: "../../public/website/Polycraft-scaled.webp",
+    },
+    {
+      title: "",
+      image: "../../public/website/Rshairandsalon-768x4416.webp",
+    },
+    {
+      title: "",
+      image: "../../public/website/Woodvision-scaled.webp",
+    },
+    {
+      title: "",
+      image: "../../public/website/writeforus.webp",
+    },
+
+  ],
+  "Google Ads": [
+    {
+      title: "Google Ads Growth",
+      image: "../../public/ads/g1.webp",
+    },
+    {
+      title: "Google Ads Performance",
+      image: "../../public/ads/g2.webp",
+    },
+  ],
+  "Meta Ads": [
+    {
+      title: "Meta Campaigns Setup",
+      image: "../../public/ads/m1.webp",
+    },
+    {
+      title: "Meta Conversion Details",
+      image: "../../public/ads/m2.webp",
+    },
+  ],
+  "SEO Content Writing": [
+    {
+      title: "",
+      image: "../../public/seo/seo1.webp",
+    },
+    {
+      title: "",
+      image: "../../public/seo/seo2.webp",
+    },
+    {
+      title: "",
+      image: "../../public/seo/seo3.webp",
+    },
+    {
+      title: "",
+      image: "../../public/seo/seo4.webp",
+    },
+    {
+      title: "",
+      image: "../../public/seo/seo5.webp",
+    },
+
+    {
+      title: "",
+      image: "../../public/seo/seo6.webp",
+    },
+  ],
+};
+
+function CustomCarousel({ items, imageFit = "cover", aspectRatio = "3/4", overlay = true }) {
+  const scrollRef = React.useRef(null);
+  const [isHovered, setIsHovered] = React.useState(false);
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      // Auto-scroll runs when not strictly hovered (or customize based on preference)
+      // The user requested: "automatic scroll or and one can do with button"
+      if (scrollRef.current && !isHovered) {
+        const { scrollLeft, scrollWidth, clientWidth } = scrollRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          scrollRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          scrollRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+        }
+      }
+    }, 3000);
+    return () => clearInterval(timer);
+  }, [isHovered]);
+
+  const scrollLeft = () => scrollRef.current?.scrollBy({ left: -400, behavior: 'smooth' });
+  const scrollRight = () => scrollRef.current?.scrollBy({ left: 400, behavior: 'smooth' });
+
+  return (
+    <div 
+      className="relative group w-full pt-4"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div 
+        ref={scrollRef} 
+        className="flex gap-8 overflow-x-auto snap-x snap-mandatory py-4 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]" 
+        style={{ scrollBehavior: 'smooth' }}
+      >
+        {items.map((item, idx) => (
+          <div key={item.title + idx} className="snap-center sm:snap-start flex-shrink-0 w-[85%] sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-22px)]">
+            <div className="group/card relative overflow-hidden rounded-2xl cursor-pointer border border-white/5 flex items-center justify-center" style={{ aspectRatio, background: "#0a0a0a" }}>
+              <img 
+                src={item.image} 
+                alt={item.title} 
+                className={`absolute inset-0 w-full h-full transition-all duration-700 ${imageFit === "contain" ? "object-contain opacity-95 group-hover/card:opacity-100 p-2" : "object-cover opacity-80 group-hover/card:opacity-100 group-hover/card:scale-105"}`} 
+              />
+              {overlay && item.title && (
+                <>
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
+                  <div className="absolute bottom-8 left-8 right-8 translate-y-2 group-hover/card:translate-y-0 transition-transform duration-400 pointer-events-none">
+                    <h4 className="font-black text-white" style={{ fontSize: "clamp(18px, 2vw, 24px)", letterSpacing: "-0.02em", lineHeight: 1.15 }}>{item.title}</h4>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      
+      <button 
+        onClick={scrollLeft} 
+        className="absolute left-[-20px] lg:left-[-25px] top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-[#EDF406] text-black font-black opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_15px_rgba(237,244,6,0.2)]"
+      >
+        ←
+      </button>
+      <button 
+        onClick={scrollRight} 
+        className="absolute right-[-20px] lg:right-[-25px] top-1/2 -translate-y-1/2 z-10 w-12 h-12 flex items-center justify-center rounded-full bg-[#EDF406] text-black font-black opacity-0 group-hover:opacity-100 transition-opacity shadow-[0_0_15px_rgba(237,244,6,0.2)]"
+      >
+        →
+      </button>
+    </div>
+  );
+}
 
 export default function CaseStudiesSection() {
   return (
     <section
-      id="case-studies"
+      id="portfolio"
       className="bg-black"
       style={{ padding: "9rem 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
       <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 1.5rem" }}>
-
+        
         {/* Header */}
         <div className="mb-20">
           <AnimatedReveal>
@@ -49,102 +203,131 @@ export default function CaseStudiesSection() {
               className="inline-block font-black text-[#EDF406] border border-[#EDF406]/35 uppercase mb-7"
               style={{ fontSize: "11px", letterSpacing: "0.22em", padding: "0.45rem 1.2rem", borderRadius: "9999px" }}
             >
-              Case Studies
+              MY WORKS
             </span>
           </AnimatedReveal>
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <AnimatedReveal delay={0.1}>
               <h2
-                className="font-black text-white"
+                className="font-black text-white max-w-2xl"
                 style={{
-                  fontSize: "clamp(52px, 8vw, 110px)",
-                  letterSpacing: "-0.05em",
-                  lineHeight: 0.9,
+                  fontSize: "clamp(36px, 5vw, 64px)",
+                  letterSpacing: "-0.04em",
+                  lineHeight: 1.1,
                   fontWeight: 600
                 }}
               >
-                Selected <br />
-                <span style={{ color: "#EDF406", fontWeight: 600, fontSize: "40px" }}>
-                  Works.
-                </span>
+                Showcasing My Craft: <br />
+                <span style={{ color: "#EDF406" }}>A Portfolio of Creative</span>
+                <br />
+                Work and Expertise.
               </h2>
-            </AnimatedReveal>
-            <AnimatedReveal delay={0.2}>
-              <p
-                className="text-[#a3a3a3] max-w-xs font-medium"
-                style={{ fontSize: "17px", lineHeight: 1.65 }}
-              >
-                Real campaigns. Real numbers. A proven track record of exponential growth.
-              </p>
             </AnimatedReveal>
           </div>
         </div>
 
-        {/* 2×2 image grid */}
-        <StaggerContainer stagger={0.1} className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {cases.map((item) => (
-            <StaggerItem key={item.title}>
-              <div
-                className="group relative overflow-hidden cursor-pointer"
-                style={{ borderRadius: "24px", aspectRatio: "16/10", background: "#0a0a0a" }}
-              >
-                {/* Image */}
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:opacity-95 group-hover:scale-105 transition-all duration-700"
-                />
-
-                {/* Gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/45 to-transparent" />
-
-                {/* ROI Tag */}
-                <div
-                  className="absolute top-6 left-6 font-black text-black bg-[#EDF406]"
-                  style={{ fontSize: "11px", letterSpacing: "0.15em", textTransform: "uppercase", padding: "0.35rem 0.9rem", borderRadius: "9999px" }}
+        {/* Vertically Stacked Categories */}
+        <div className="flex flex-col gap-28">
+          {Object.entries(portfolioData).map(([category, items], sectionIdx) => (
+            <div key={category} className="flex flex-col gap-10">
+              
+              <AnimatedReveal>
+                <h3 
+                  className="font-black text-[#EDF406]"
+                  style={{
+                    fontSize: "clamp(28px, 3.5vw, 42px)",
+                    letterSpacing: "-0.02em"
+                  }}
                 >
-                  {item.tag}
-                </div>
+                  {category}
+                </h3>
+              </AnimatedReveal>
 
-                {/* Arrow */}
-                <div
-                  className="absolute top-6 right-6 flex items-center justify-center text-black bg-[#EDF406] font-black opacity-0 group-hover:opacity-100 -translate-x-3 group-hover:translate-x-0 transition-all duration-400"
-                  style={{ width: "48px", height: "48px", borderRadius: "50%", fontSize: "20px" }}
+              {category === "Social Media Designs" ? (
+                <AnimatedReveal delay={0.2}>
+                  <CustomCarousel items={items} imageFit="cover" aspectRatio="3/4" overlay={true} />
+                </AnimatedReveal>
+              ) : category === "SEO Content Writing" ? (
+                <AnimatedReveal delay={0.2}>
+                  <CustomCarousel items={items} imageFit="contain" aspectRatio="16/10" overlay={false} />
+                </AnimatedReveal>
+              ) : (
+                <StaggerContainer 
+                  stagger={0.1} 
+                  className={category === "Google Ads" || category === "Meta Ads" ? "grid grid-cols-1 md:grid-cols-2 gap-8" : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"}
                 >
-                  <span style={{ transform: "rotate(-45deg)", display: "inline-block" }}>→</span>
-                </div>
+                  {items.map((item, idx) => {
+                    
+                    // Website Designing specific hover-to-scroll implementation
+                    if (category === "Website Designing") {
+                      return (
+                        <StaggerItem key={item.title + idx}>
+                          <div
+                            className="group relative overflow-hidden rounded-2xl w-full"
+                            style={{
+                              height: "450px",
+                              background: "#0a0a0a",
+                              border: "1px solid rgba(255,255,255,0.05)",
+                            }}
+                          >
+                            <div className="absolute inset-x-0 w-full" style={{ height: "100%", overflow: "hidden" }}>
+                              <img
+                                src={item.image}
+                                alt={item.title}
+                                className="w-full h-auto transform transition-transform ease-in-out block"
+                                style={{
+                                  transitionDuration: "4s",
+                                }}
+                                onMouseEnter={(e) => {
+                                  e.currentTarget.style.transform = "translateY(calc(450px - 100%))";
+                                }}
+                                onMouseLeave={(e) => {
+                                  e.currentTarget.style.transform = "translateY(0)";
+                                }}
+                              />
+                            </div>
+                            
+                            {/* Gradient fixed at bottom */}
+                            <div className="absolute left-0 right-0 bottom-0 pointer-events-none bg-gradient-to-t from-black/80 via-black/20 to-transparent h-24" />
+                            
+                            <div className="absolute bottom-6 left-6 right-6 pointer-events-none">
+                              <div
+                                className="inline-block px-4 py-2 font-black text-black bg-[#EDF406] uppercase rounded-full shadow-[0_0_20px_rgba(237,244,6,0.2)]"
+                                style={{ fontSize: "10px", letterSpacing: "0.15em" }}
+                              >
+                                {item.title}
+                              </div>
+                            </div>
+                          </div>
+                        </StaggerItem>
+                      );
+                    }
 
-                {/* Text */}
-                <div className="absolute bottom-8 left-8 right-8 translate-y-2 group-hover:translate-y-0 transition-transform duration-400">
-                  <div
-                    className="font-black text-[#EDF406] uppercase mb-3"
-                    style={{ fontSize: "10px", letterSpacing: "0.2em", opacity: 0.8 }}
-                  >
-                    {item.category} · {item.year}
-                  </div>
-                  <h4
-                    className="font-black text-white"
-                    style={{ fontSize: "clamp(20px, 2.5vw, 30px)", letterSpacing: "-0.04em", lineHeight: 1.15 }}
-                  >
-                    {item.title}
-                  </h4>
-                </div>
-              </div>
-            </StaggerItem>
+                    // Specific rendering for Ads to prevent zooming
+                    if (category === "Google Ads" || category === "Meta Ads") {
+                      return (
+                        <StaggerItem key={item.title + idx} className="lg:col-span-1">
+                          <div 
+                            className="group rounded-2xl overflow-hidden border border-white/5 bg-[#0a0a0a] flex items-center justify-center cursor-pointer"
+                          >
+                            <img
+                              src={item.image}
+                              alt={item.title}
+                              className="w-full h-auto object-contain opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                            />
+                          </div>
+                        </StaggerItem>
+                      );
+                    }
+
+                    return null;
+                  })}
+                </StaggerContainer>
+              )}
+            </div>
           ))}
-        </StaggerContainer>
+        </div>
 
-        {/* CTA */}
-        <AnimatedReveal delay={0.3}>
-          <div className="text-center mt-14">
-            <button
-              className="font-black text-white border border-white/20 hover:border-[#EDF406] hover:text-[#EDF406] transition-all duration-300"
-              style={{ fontSize: "13px", letterSpacing: "0.12em", textTransform: "uppercase", padding: "1rem 2.4rem", borderRadius: "9999px" }}
-            >
-              View All Case Studies
-            </button>
-          </div>
-        </AnimatedReveal>
       </div>
     </section>
   );

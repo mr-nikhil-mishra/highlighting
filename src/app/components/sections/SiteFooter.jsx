@@ -65,7 +65,7 @@ export default function SiteFooter() {
               className="text-[#555] max-w-xs"
               style={{ fontSize: "15px", lineHeight: 1.7 }}
             >
-              A full-service digital marketing agency based in London, UK — helping ambitious brands attract traffic, generate leads, and scale revenue.
+              A full-service digital marketing agency based in Dubai, UAE — helping ambitious brands attract traffic, generate leads, and scale revenue.
             </p>
             <div className="flex gap-3 mt-8">
               {Object.entries(SITE_CONFIG.social).map(([name, url]) => {
