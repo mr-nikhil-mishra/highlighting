@@ -187,6 +187,49 @@ function CustomCarousel({ items, imageFit = "cover", aspectRatio = "3/4", overla
   );
 }
 
+function WebsiteDesignCard({ item }) {
+  const [isScrolled, setIsScrolled] = React.useState(false);
+
+  return (
+    <div
+      className="group relative overflow-hidden rounded-2xl w-full cursor-pointer"
+      style={{
+        height: "450px",
+        background: "#0a0a0a",
+        border: "1px solid rgba(255,255,255,0.05)",
+      }}
+      onClick={() => setIsScrolled(!isScrolled)}
+      onMouseEnter={() => setIsScrolled(true)}
+      onMouseLeave={() => setIsScrolled(false)}
+    >
+      <div className="absolute inset-x-0 w-full" style={{ height: "100%", overflow: "hidden" }}>
+        <img
+          src={item.image}
+          alt={item.title}
+          className="w-full h-auto block transition-transform ease-in-out duration-[4000ms]"
+          style={{
+            transform: isScrolled ? "translateY(calc(450px - 100%))" : "translateY(0)"
+          }}
+        />
+      </div>
+      
+      {/* Gradient fixed at bottom */}
+      <div className="absolute left-0 right-0 bottom-0 pointer-events-none bg-gradient-to-t from-black/80 via-black/20 to-transparent h-24" />
+      
+      {item.title && (
+        <div className="absolute bottom-6 left-6 right-6 pointer-events-none">
+          <div
+            className="inline-block px-4 py-2 font-black text-black bg-[#EDF406] uppercase rounded-full shadow-[0_0_20px_rgba(237,244,6,0.2)]"
+            style={{ fontSize: "10px", letterSpacing: "0.15em" }}
+          >
+            {item.title}
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function CaseStudiesSection() {
   return (
     <section
@@ -261,35 +304,8 @@ export default function CaseStudiesSection() {
                     // Website Designing specific hover-to-scroll implementation
                     if (category === "Website Designing") {
                       return (
-                        <StaggerItem key={item.title + idx}>
-                          <div
-                            className="group relative overflow-hidden rounded-2xl w-full"
-                            style={{
-                              height: "450px",
-                              background: "#0a0a0a",
-                              border: "1px solid rgba(255,255,255,0.05)",
-                            }}
-                          >
-                            <div className="absolute inset-x-0 w-full" style={{ height: "100%", overflow: "hidden" }}>
-                              <img
-                                src={item.image}
-                                alt={item.title}
-                                className="w-full h-auto block transition-transform ease-in-out duration-[4000ms] group-hover:[transform:translateY(calc(450px-100%))]"
-                              />
-                            </div>
-                            
-                            {/* Gradient fixed at bottom */}
-                            <div className="absolute left-0 right-0 bottom-0 pointer-events-none bg-gradient-to-t from-black/80 via-black/20 to-transparent h-24" />
-                            
-                            <div className="absolute bottom-6 left-6 right-6 pointer-events-none">
-                              <div
-                                className="inline-block px-4 py-2 font-black text-black bg-[#EDF406] uppercase rounded-full shadow-[0_0_20px_rgba(237,244,6,0.2)]"
-                                style={{ fontSize: "10px", letterSpacing: "0.15em" }}
-                              >
-                                {item.title}
-                              </div>
-                            </div>
-                          </div>
+                        <StaggerItem key={idx}>
+                          <WebsiteDesignCard item={item} />
                         </StaggerItem>
                       );
                     }
