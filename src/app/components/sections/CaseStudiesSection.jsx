@@ -188,6 +188,8 @@ function CustomCarousel({ items, imageFit = "cover", aspectRatio = "3/4", overla
 }
 
 function WebsiteDesignCard({ item }) {
+  const [isActive, setIsActive] = React.useState(false);
+
   return (
     <div
       className="group relative overflow-hidden rounded-2xl w-full cursor-pointer"
@@ -196,12 +198,18 @@ function WebsiteDesignCard({ item }) {
         background: "#0a0a0a",
         border: "1px solid rgba(255,255,255,0.05)",
       }}
+      onClick={() => setIsActive(!isActive)}
+      onMouseEnter={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
     >
       <div className="absolute inset-x-0 w-full" style={{ height: "100%", overflow: "hidden" }}>
         <img
           src={item.image}
           alt={item.title}
-          className="w-full h-auto block transition-transform ease-linear duration-[5000ms] group-hover:[transform:translateY(calc(450px-100%))]"
+          className="w-full h-auto block transition-transform ease-linear duration-[5000ms]"
+          style={{
+            transform: isActive ? "translateY(calc(450px - 100%))" : "translateY(0)",
+          }}
         />
       </div>
       

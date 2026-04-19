@@ -59,12 +59,13 @@ export default function HeroSection() {
             transition={{ duration: 1.1, ease: EASE, delay: 0.14 }}
             className="font-black text-white"
             style={{
-              fontSize: "70px",
+              fontSize: "clamp(34px, 9vw, 70px)",
               letterSpacing: "-0.055em",
-              lineHeight: 0.88,
+              lineHeight: 0.95,
               display: "block",
               color: "#ffffff",
-              paddingBottom:"10px"
+              paddingBottom:"10px",
+              wordWrap: "break-word"
             }}
           >
             HIGHLIGHT Marketing Management
