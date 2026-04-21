@@ -41,6 +41,10 @@ const portfolioData = {
       title: "",
       image: "/website/threesquares.png",
     },
+    {
+      title: "",
+      image: "/website/sighcoffe.png",
+    },
 
   ],
   "Google Ads": [

@@ -16,8 +16,8 @@ export const SITE_CONFIG = {
 
   // Social links
   social: {
-    facebook: "https://www.facebook.com/highlight333/",
-    instagram: "https://www.instagram.com/highlight.marketing.management/",
+    facebook: "https://www.facebook.com/share/1GdRGQLHYq/?mibextid=wwXIfr",
+    instagram: "https://www.instagram.com/highlightmarketing.ae",
   },
 
   // CTA text

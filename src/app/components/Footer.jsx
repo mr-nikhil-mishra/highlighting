@@ -80,6 +80,7 @@ export function Footer() {
                   width: "auto",
                   filter: "brightness(0) invert(1)",
                   transition: "opacity 0.3s ease",
+                  marginLeft: "-16px",
                 }}
                 className="hover:opacity-80"
               />

@@ -59,6 +59,7 @@ export default function SiteFooter() {
                 filter: "brightness(0) invert(1)",
                 marginBottom: "1.5rem",
                 display: "block",
+                marginLeft: "-16px",
               }}
             />
             <p

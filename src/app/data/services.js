@@ -32,8 +32,8 @@ export const services = [
     title: "Vehicle Branding",
     description: "Turn Heads on the Road! Eye-catching vehicle wraps that make your brand impossible to ignore.",
     num: "02",
-    heroImage: "/services/vehicle.jpg",
-    image: "/services/vehicle.jpg",
+    heroImage: "/services/vehicle.jpeg",
+    image: "/services/vehicle.jpeg",
     content: [
       "Transform your company vehicles into powerful, moving billboards. Vehicle branding is one of the most cost-effective forms of advertising, generating thousands of daily impressions while your fleet is simply driving or parked around the city.",
       "We design, print, and install high-quality, weather-resistant fleet graphics. Whether it's a subtle door logo, a half-wrap, or a completely transformative full vehicle wrap, our premium materials ensure your brand stands out vividly and permanently.",

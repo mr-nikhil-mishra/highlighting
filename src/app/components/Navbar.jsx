@@ -162,8 +162,14 @@ export function Navbar() {
             className="lg:hidden text-white hover:text-[#EDF406] transition-colors duration-200"
             onClick={() => setMobileOpen((p) => !p)}
             aria-label="Toggle menu"
+            style={{
+              background: "none",
+              border: "none",
+              padding: 0,
+              marginRight: "2px" // Optical alignment tweak
+            }}
           >
-            {mobileOpen ? <X size={28} strokeWidth={2.5} /> : <Menu size={28} strokeWidth={2.5} />}
+            {mobileOpen ? <X size={32} strokeWidth={2.5} /> : <Menu size={32} strokeWidth={2.5} />}
           </button>
         </div>
       </motion.nav>
@@ -176,9 +182,17 @@ export function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.55, ease: EASE }}
-            className="fixed inset-0 z-40 bg-black flex flex-col px-8 pt-28 pb-12"
+            style={{
+              position: "fixed",
+              top: 0, left: 0, right: 0, bottom: 0,
+              zIndex: 40,
+              backgroundColor: "#000000",
+              padding: "160px 1.5rem 3rem",
+              display: "flex",
+              flexDirection: "column"
+            }}
           >
-            <nav className="flex flex-col gap-6 flex-1">
+            <nav style={{ display: "flex", flexDirection: "column", gap: "2.2rem", flex: 1 }}>
               {NAV_LINKS.map((link, i) => (
                 <motion.button
                   key={link.href}
@@ -186,8 +200,15 @@ export function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: i * 0.07 + 0.1, duration: 0.6, ease: EASE }}
                   onClick={() => handleNavClick(link.href, true)}
-                  className="text-left text-white hover:text-[#EDF406] font-black transition-colors duration-200"
-                  style={{ fontSize: "clamp(30px, 8vw, 44px)", letterSpacing: "-0.04em" }}
+                  className="text-white hover:text-[#EDF406] font-black transition-colors duration-200"
+                  style={{
+                    fontSize: "clamp(32px, 9vw, 44px)",
+                    letterSpacing: "-0.04em",
+                    textAlign: "left",
+                    background: "none",
+                    border: "none",
+                    padding: 0
+                  }}
                 >
                   {link.label}
                 </motion.button>
@@ -201,8 +222,8 @@ export function Navbar() {
             >
               <button
                 onClick={() => handleNavClick("#contact", true)}
-                className="w-full py-5 bg-[#EDF406] text-black font-black uppercase tracking-widest hover:bg-white transition-colors duration-300"
-                style={{ fontSize: "15px", borderRadius: "9999px" }}
+                className="w-full bg-[#EDF406] text-black font-black uppercase tracking-widest hover:bg-white transition-colors duration-300"
+                style={{ fontSize: "15px", borderRadius: "9999px", padding: "1.2rem 0", border: "none" }}
               >
                 {SITE_CONFIG.cta.primary}
               </button>
