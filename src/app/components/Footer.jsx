@@ -69,30 +69,20 @@ export function Footer() {
           {/* Col 1 - Brand */}
           <motion.div variants={itemVariants}>
             <div
-              className="flex items-center gap-2.5 mb-6 cursor-pointer"
+              className="flex items-center mb-6 cursor-pointer"
               onClick={() => navigate("/")}
             >
-              <div
-                className="w-9 h-9 rounded-lg flex items-center justify-center"
-                style={{ background: "linear-gradient(135deg, var(--brand-neon), var(--brand-dark))" }}
-              >
-                <svg width="20" height="20" viewBox="0 0 28 28" fill="none">
-                  <path d="M4 20L14 4L24 20H4Z" fill="#050505" />
-                </svg>
-              </div>
-              <span
+              <img
+                src="/logo.png"
+                alt="HIGHLIGHT Marketing Management"
                 style={{
-                  fontFamily: "'Space Grotesk', sans-serif",
-                  color: colors.text,
-                  fontSize: "1.2rem",
-                  fontWeight: 700,
-                  letterSpacing: "-0.02em",
-                  transition: "color 0.3s ease",
+                  height: "60px",
+                  width: "auto",
+                  filter: "brightness(0) invert(1)",
+                  transition: "opacity 0.3s ease",
                 }}
-              >
-                HIGHLIGHT&nbsp;
-                <span style={{ color: "var(--brand-neon)" }}>Marketing&nbsp;Management</span>
-              </span>
+                className="hover:opacity-80"
+              />
             </div>
             <p
               className="mb-8"

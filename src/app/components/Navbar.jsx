@@ -119,7 +119,7 @@ export function Navbar() {
               src="/logo.png"
               alt="HIGHLIGHT Marketing Management"
               style={{
-                height: scrolled ? "34px" : "40px",
+                height: scrolled ? "48px" : "60px",
                 width: "auto",
                 filter: "brightness(0) invert(1)",
                 transition: "height 0.4s ease",

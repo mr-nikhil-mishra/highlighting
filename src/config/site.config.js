@@ -12,7 +12,7 @@ export const SITE_CONFIG = {
   // Contact details
   phone: "+971 54 794 9888",
   email: "info@highlightmarketing.ae",
-  address: "Dubai",
+  address: "Office no. 309, Opal Tower, Business Bay, Dubai, UAE",
 
   // Social links
   social: {

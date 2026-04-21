@@ -12,7 +12,7 @@ export default function AboutMeSection() {
     <section
       id="about"
       className="bg-black border-t border-white/5"
-      style={{ padding: "9rem 0" }}
+      style={{ padding: "clamp(4rem, 5vw, 6.5rem) 0" }}
     >
       <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 1.5rem" }}>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
@@ -38,10 +38,10 @@ export default function AboutMeSection() {
                 }}
               />
               <img
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=900&q=80"
+                src="/services/home.jpg"
                 alt="About HIGHLIGHT Marketing Management"
-                className="relative z-10 w-full object-cover transition-all duration-700"
-                style={{ aspectRatio: "3/4", borderRadius: "40px" }}
+                className="relative z-10 w-full h-auto transition-all duration-700"
+                style={{ borderRadius: "40px" }}
               />
               {/* Corner accent */}
               <div

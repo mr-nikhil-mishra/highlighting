@@ -55,17 +55,17 @@ export function ServiceDetailsPage() {
          ========================================= 
          Uses absolute positioning and blend modes to embed the heroImage directly into the top edge 
          while maintaining text legibility through a heavy gradient overlay. */}
-      <section className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: "75vh", paddingTop: "140px", paddingBottom: "100px" }}>
+      <section className="relative flex items-center justify-center overflow-hidden" style={{ minHeight: "50vh", paddingTop: "160px", paddingBottom: "100px" }}>
         
         {/* Background Image Container */}
         <div className="absolute inset-0 z-0">
           <motion.img
-            initial={{ scale: 1.15 }}
+            initial={{ scale: 1.05 }}
             animate={{ scale: 1 }}
             transition={{ duration: 1.8, ease: "easeOut" }}
             src={service.heroImage}
             alt={service.title}
-            className="w-full h-full object-cover opacity-25"
+            className="w-full h-full object-cover object-[center_35%] opacity-25"
             style={{ mixBlendMode: "luminosity" }} // Drops saturation nicely into the dark mode UI
           />
           {/* Gradient Overlay for Text Legibility (fades from heavy to total black) */}
@@ -75,7 +75,7 @@ export function ServiceDetailsPage() {
         {/* Hero Content Constraints (Inline styles here ensure no conflict with disabled local Tailwind environments) */}
         <div className="relative z-10 w-full" style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 1.5rem", display: "flex", flexDirection: "column", alignItems: "center", textAlign: "center" }}>
           
-          <AnimatedReveal>
+          <AnimatedReveal className="flex flex-col items-center w-full text-center">
             {/* 
               Custom Internal "Back" Button 
               Rather than traditional navigation, this specifically forces the user 
@@ -117,7 +117,7 @@ export function ServiceDetailsPage() {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="font-black mb-6 text-white"
+              className="font-black mb-6 text-white text-center w-full"
               style={{
                 fontSize: "clamp(3.5rem, 7vw, 6.5rem)", // Fluid typography scales cleanly on mobile
                 fontFamily: "'Space Grotesk', sans-serif",
@@ -133,7 +133,7 @@ export function ServiceDetailsPage() {
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-gray-300 mx-auto"
+              className="text-gray-300 mx-auto text-center"
               style={{ 
                 fontFamily: "'Inter', sans-serif", 
                 fontSize: "clamp(1.15rem, 2vw, 1.4rem)",
@@ -168,11 +168,11 @@ export function ServiceDetailsPage() {
             >
               {/* Image naturally scales slightly on mouse hover */}
               <motion.img
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.02 }}
                 transition={{ duration: 0.7, ease: "easeOut" }}
                 src={service.image}
                 alt={`${service.title} implementation`}
-                className="w-full h-full object-cover aspect-[4/3] md:aspect-[4/4]"
+                className="w-full h-auto"
               />
               {/* Subtle glassmmorphic inner-border for premium feel */}
               <div className="absolute inset-0 border border-white/10 rounded-2xl pointer-events-none" />

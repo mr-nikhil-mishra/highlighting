@@ -36,7 +36,7 @@ const reasons = [
 export default function WhyChooseUsSection() {
   return (
     <section
-      style={{ background: "#050505", padding: "9rem 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      style={{ background: "#050505", padding: "clamp(4rem, 5vw, 6.5rem) 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
       <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 1.5rem" }}>
 

@@ -68,7 +68,7 @@ export default function HeroSection() {
               wordWrap: "break-word"
             }}
           >
-            HIGHLIGHT Marketing Management
+            About Us
           </motion.h1>
         </div>
 

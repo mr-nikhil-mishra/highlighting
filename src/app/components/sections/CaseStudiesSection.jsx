@@ -2,121 +2,92 @@ import React from "react";
 import { StaggerContainer, StaggerItem } from "../AnimatedReveal";
 import AnimatedReveal from "../AnimatedReveal";
 
-const tabs = ["Social Media Designs", "Website Designing", "Google / Meta Ads", "SEO Content Writing"];
+const tabs = ["Social Media Management", "Website Designing", "Google / Meta Ads", "SEO Content Writing"];
 
 const portfolioData = {
-  "Social Media Designs": [
+  "Social Media Management": [
     {
-      title: "Auto Detailing Specialist",
-      image: "/social/car-workshop.webp",
+      title: "",
+      image: "/seo/printingAndPackaging1.mp4",
     },
     {
-      title: "Villa Renovation",
-      image: "/social/villa.webp",
+      title: "",
+      image: "/seo/printingAndPackaging2.mp4",
     },
     {
-      title: "Marketing Made Easy",
-      image: "/social/marketing.webp",
-    },
-    {
-      title: "Hustlers Promo",
-      image: "/social/hustlers.webp",
-    },
-    {
-      title: "Exclusive Events",
-      image: "/social/exclusive.webp",
+      title: "",
+      image: "/seo/printingAndPackaging3.mp4",
     },
   ],
   "Website Designing": [
     {
       title: "",
-      image: "/website/Bharat-Bistro-scaled.webp",
+      image: "/website/nahdimandi.png",
     },
 
     {
       title: "",
-      image: "/website/cars.webp",
+      image: "/website/maisonhaniel.png",
     },
     {
       title: "",
-      image: "/website/coworking.webp",
+      image: "/website/wazirone.png",
     },
     {
       title: "",
-      image: "/website/Czarinterior.webp",
+      image: "/website/coffee.png",
     },
     {
       title: "",
-      image: "/website/Hotline-768x3451.webp",
-    },
-    {
-      title: "",
-      image: "/website/Polycraft-scaled.webp",
-    },
-    {
-      title: "",
-      image: "/website/Rshairandsalon-768x4416.webp",
-    },
-    {
-      title: "",
-      image: "/website/Woodvision-scaled.webp",
-    },
-    {
-      title: "",
-      image: "/website/writeforus.webp",
+      image: "/website/threesquares.png",
     },
 
   ],
   "Google Ads": [
     {
       title: "Google Ads Growth",
-      image: "/ads/g1.webp",
+      image: "/ads/g1.jpeg",
     },
     {
       title: "Google Ads Performance",
-      image: "/ads/g2.webp",
+      image: "/ads/g2.jpeg",
     },
   ],
   "Meta Ads": [
     {
       title: "Meta Campaigns Setup",
-      image: "/ads/m1.webp",
-    },
-    {
-      title: "Meta Conversion Details",
-      image: "/ads/m2.webp",
+      image: "/ads/m1.jpeg",
     },
   ],
-  "SEO Content Writing": [
+  "Printing and Packaging": [
     {
       title: "",
-      image: "/seo/seo1.webp",
+      image: "/pandp/p1.mp4",
     },
     {
       title: "",
-      image: "/seo/seo2.webp",
+      image: "/pandp/p2.mp4",
     },
     {
       title: "",
-      image: "/seo/seo3.webp",
+      image: "/pandp/p3.mp4",
     },
     {
       title: "",
-      image: "/seo/seo4.webp",
+      image: "/pandp/p4.mp4",
     },
     {
       title: "",
-      image: "/seo/seo5.webp",
+      image: "/pandp/p5.mp4",
     },
-
     {
       title: "",
-      image: "/seo/seo6.webp",
+      image: "/pandp/p6.mp4",
     },
   ],
 };
 
-function CustomCarousel({ items, imageFit = "cover", aspectRatio = "3/4", overlay = true }) {
+function CustomCarousel({ items, imageFit = "cover", aspectRatio = "3/4", overlay = true, playbackRate = 1.0 }) {
   const scrollRef = React.useRef(null);
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -153,11 +124,23 @@ function CustomCarousel({ items, imageFit = "cover", aspectRatio = "3/4", overla
         {items.map((item, idx) => (
           <div key={item.title + idx} className="snap-center sm:snap-start flex-shrink-0 w-[85%] sm:w-[calc(50%-16px)] lg:w-[calc(33.333%-22px)]">
             <div className="group/card relative overflow-hidden rounded-2xl cursor-pointer border border-white/5 flex items-center justify-center" style={{ aspectRatio, background: "#0a0a0a" }}>
-              <img 
-                src={item.image} 
-                alt={item.title} 
-                className={`absolute inset-0 w-full h-full transition-all duration-700 ${imageFit === "contain" ? "object-contain opacity-95 group-hover/card:opacity-100 p-2" : "object-cover opacity-80 group-hover/card:opacity-100 group-hover/card:scale-105"}`} 
-              />
+              {item.image?.endsWith('.mp4') ? (
+                <video
+                  src={item.image}
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  ref={(el) => { if (el) el.playbackRate = playbackRate; }}
+                  className={`absolute inset-0 w-full h-full transition-all duration-700 ${imageFit === "contain" ? "object-contain opacity-95 group-hover/card:opacity-100 p-2" : "object-cover opacity-80 group-hover/card:opacity-100 group-hover/card:scale-105"}`}
+                />
+              ) : (
+                <img 
+                  src={item.image} 
+                  alt={item.title} 
+                  className={`absolute inset-0 w-full h-full transition-all duration-700 ${imageFit === "contain" ? "object-contain opacity-95 group-hover/card:opacity-100 p-2" : "object-cover opacity-80 group-hover/card:opacity-100 group-hover/card:scale-105"}`} 
+                />
+              )}
               {overlay && item.title && (
                 <>
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent pointer-events-none" />
@@ -235,12 +218,12 @@ export default function CaseStudiesSection() {
     <section
       id="portfolio"
       className="bg-black"
-      style={{ padding: "9rem 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}
+      style={{ padding: "clamp(4rem, 5vw, 6.5rem) 0", borderTop: "1px solid rgba(255,255,255,0.05)" }}
     >
       <div style={{ maxWidth: "1300px", margin: "0 auto", padding: "0 1.5rem" }}>
         
         {/* Header */}
-        <div className="mb-20">
+        <div className="mb-32">
           <AnimatedReveal>
             <span
               className="inline-block font-black text-[#EDF406] border border-[#EDF406]/35 uppercase mb-7"
@@ -252,25 +235,23 @@ export default function CaseStudiesSection() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <AnimatedReveal delay={0.1}>
               <h2
-                className="font-black text-white max-w-2xl"
+                className="font-black text-white w-full max-w-none"
                 style={{
                   fontSize: "clamp(36px, 5vw, 64px)",
                   letterSpacing: "-0.04em",
                   lineHeight: 1.1,
-                  fontWeight: 600
+                  fontWeight: 600,
+                  paddingBottom: "30px"
                 }}
               >
-                Showcasing My Craft: <br />
-                <span style={{ color: "#EDF406" }}>A Portfolio of Creative</span>
-                <br />
-                Work and Expertise.
+                Where Ideas Turn Into Impact
               </h2>
             </AnimatedReveal>
           </div>
         </div>
 
         {/* Vertically Stacked Categories */}
-        <div className="flex flex-col gap-28">
+        <div className="flex flex-col gap-28 pt-4">
           {Object.entries(portfolioData).map(([category, items], sectionIdx) => (
             <div key={category} className="flex flex-col gap-10">
               
@@ -286,13 +267,13 @@ export default function CaseStudiesSection() {
                 </h3>
               </AnimatedReveal>
 
-              {category === "Social Media Designs" ? (
+              {category === "Social Media Management" ? (
                 <AnimatedReveal delay={0.2}>
-                  <CustomCarousel items={items} imageFit="cover" aspectRatio="3/4" overlay={true} />
+                  <CustomCarousel items={items} imageFit="cover" aspectRatio="9/16" overlay={true} />
                 </AnimatedReveal>
-              ) : category === "SEO Content Writing" ? (
+              ) : category === "Printing and Packaging" ? (
                 <AnimatedReveal delay={0.2}>
-                  <CustomCarousel items={items} imageFit="contain" aspectRatio="16/10" overlay={false} />
+                  <CustomCarousel items={items} imageFit="cover" aspectRatio="9/16" overlay={false} playbackRate={0.90} />
                 </AnimatedReveal>
               ) : (
                 <StaggerContainer 
