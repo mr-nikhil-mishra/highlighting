@@ -54,10 +54,10 @@ export default function SiteFooter() {
               src="/logo.png"
               alt="HIGHLIGHT Marketing Management"
               style={{
-                height: "44px",
+                height: "70px",
                 width: "auto",
                 filter: "brightness(0) invert(1)",
-                marginBottom: "1rem",
+                marginBottom: "1.5rem",
                 display: "block",
               }}
             />
