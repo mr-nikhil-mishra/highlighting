@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import AnimatedReveal from "../AnimatedReveal";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
 import { SITE_CONFIG } from "../../../config/site.config";
+import emailjs from "@emailjs/browser";
 
 const contactDetails = [
   { icon: Phone, label: "Phone", value: SITE_CONFIG.phone, href: `tel:${SITE_CONFIG.phone}` },
@@ -12,12 +13,44 @@ const contactDetails = [
 export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", subject: "", message: "" });
   const [sent, setSent] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const onChange = (e) => setForm((p) => ({ ...p, [e.target.name]: e.target.value }));
   const onSubmit = (e) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => setSent(false), 4000);
+    setLoading(true);
+
+    const serviceId = "service_s09vynn";
+    const templateId = "template_xeou1fn";
+    const publicKey = "wLp9c7FD65h0mCkty";
+
+    emailjs
+      .send(
+        serviceId,
+        templateId,
+        {
+          name: form.name,
+          email: form.email,
+          subject: form.subject,
+          message: form.message,
+        },
+        publicKey
+      )
+      .then(
+        (response) => {
+          console.log("SUCCESS!", response.status, response.text);
+          setSent(true);
+          setForm({ name: "", email: "", subject: "", message: "" });
+          setTimeout(() => setSent(false), 5000);
+        },
+        (err) => {
+          console.log("FAILED...", err);
+          alert("Something went wrong. Please try again.");
+        }
+      )
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
@@ -208,6 +241,7 @@ export default function ContactSection() {
 
                   <button
                     type="submit"
+                    disabled={loading}
                     className="w-full flex items-center justify-center gap-3 font-black text-black bg-[#EDF406] hover:bg-white transition-all duration-300 mt-2"
                     style={{
                       fontSize: "13px",
@@ -216,10 +250,12 @@ export default function ContactSection() {
                       padding: "1.2rem",
                       borderRadius: "9999px",
                       boxShadow: "0 0 24px rgba(237,244,6,0.14)",
+                      opacity: loading ? 0.7 : 1,
+                      cursor: loading ? "not-allowed" : "pointer"
                     }}
                   >
-                    <span>Send Message</span>
-                    <Send size={17} strokeWidth={2.5} />
+                    <span>{loading ? "Sending..." : "Send Message"}</span>
+                    {!loading && <Send size={17} strokeWidth={2.5} />}
                   </button>
                 </form>
               )}
